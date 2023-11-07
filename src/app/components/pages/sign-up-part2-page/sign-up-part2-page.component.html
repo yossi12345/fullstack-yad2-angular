@@ -1,0 +1,35 @@
+<app-log-form-wrapper>
+    <form (submit)="onSubmit($event)" class="log-form">
+        <img src="/assets/icon_signup.svg" class="signup-img"/>
+        <img src="/assets/icon_validate_mail.svg" class="validate-mail-img"/>
+        <h3>אימות מייל</h3>
+        <div class="explanation">
+            במידה והמייל הזה קיים, 
+            <br/>
+            שלחנו לו את קוד האימות 
+        </div>
+        <div class="input-container">
+            <input name="code" [(ngModel)]="inputValue" [ngClass]="inputClasses" (input)="onChange($event)" placeholder="הזנת קוד"/>
+            <img src="/assets/close.svg" class="clear-img" (mousedown)="clearInput()"/>
+            <div *ngIf="showError" class="error">
+                {{inputValue===""?"לא נוכל להמשיך בלי הקוד":"היי, זה לא הקוד ששלחנו לך"}}
+            </div>
+        </div>
+        <div *ngIf="showSendCodeAgainBtn" class="send-code-again-container">
+            לא קיבלתי את המייל. 
+            <span (click)="sendCodeAgain()">
+                שלחו לי שוב
+            </span> 
+            <div>כדאי לבדוק בתיבת הספאם</div>
+        </div>
+        <div *ngIf="!showSendCodeAgainBtn" class="count-send-code-container">
+            נוכל לשלוח קוד נוסף בעוד
+            <span>
+                {{countForSendCode}} שניות
+            </span>
+        </div>
+        <button class="submit-btn">
+            המשך
+        </button>
+    </form>
+</app-log-form-wrapper>

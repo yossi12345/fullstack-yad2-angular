@@ -1,0 +1,85 @@
+.title{
+    font-size:24px;
+    width: 100%;
+    text-align: center;
+}
+.input-container{
+    width: 100%;
+}
+form{
+    gap:30px;
+}
+.checkbox-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    input{
+        width: 16px;
+        height: 16px;
+    }
+    label{
+        margin: 0;
+    }
+    a{
+        color: #ff7100;
+        font-weight: 500;
+        cursor: pointer;
+    }
+}
+.marginTop-10{
+    margin-top: -10px;
+}
+.terms-error{
+    margin: -25px 43px 0 0;
+    width: 100%;
+}
+.submit-btn{
+    @media (min-width:880px) {
+        margin-bottom: 30px;
+    }
+}
+.checkbox{
+    height: 16px;
+    width: 16px;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin-left: 5px;
+}
+.input-checkbox{
+    display: none;
+}
+.input-checkbox:checked +.checkbox{
+    background-color: #ff7100;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    &::before{
+        content: '\2714';
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+}
+.input-checkbox:not(:checked) + .checkbox{
+    background-color: white;
+    &:focus,&:hover{
+        border-color: #ff7100;
+    }
+}
+//שם עם ספרה? יש לנו עסק עם רובוט?
+//שם עם אות אחת? זה שיא גינס
+//נבקש למלא את השם
+
+//נבקש למלא את שם המשפחה
+//שם משפחה עם אות אחת? זה שיא גינס
+//שם עם ספרה? יש לנו עסק עם רובוט?
+
+//היי, לא לשכוח למלא מספר טלפון
+//נבקש את מספר הנייד שלך
+
+//היי, לא לשכוח לאשר את התקנון
+
+//16X16 הופך לגבול כתום כשעוברים ובפוקוס
+//30 רווח בין צקבוקסים
+//25 רווי מלמעלה

@@ -5,7 +5,7 @@
         <div class="input-container">
             <label>מייל</label>
             <div class="relative">
-                <input (input)="hideError('mail')" formControlName="mail" [ngClass]="(showMailError?'error-input':'')" placeholder="yourmail@email.co.il"/>
+                <input (input)="hideError('mail')" formControlName="mail" [ngClass]="(showMailError?'error-input':'')+' clear-input'" placeholder="yourmail@email.co.il"/>
                 <img (mousedown)="clearMailInput()" src="/assets/close.svg" class="clear-img"/>
             </div>
             <div *ngIf="showMailError" class="error">

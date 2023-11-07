@@ -6,7 +6,7 @@ import { Component ,Input,Output, EventEmitter} from '@angular/core';
   styleUrls: ['./eye-icon-for-pasword-input.component.scss']
 })
 export class EyeIconForPaswordInputComponent {
-  @Input() isRegularEye!:boolean
+  @Input() isRegularEye:boolean=true
   @Output() eyeClick=new EventEmitter()
   onClick(){
     this.isRegularEye=!this.isRegularEye

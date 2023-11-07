@@ -1,12 +1,15 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { first } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-sign-up-part1-page',
   templateUrl: './sign-up-part1-page.component.html',
   styleUrls: ['./sign-up-part1-page.component.scss']
 })
 export class SignUpPart1PageComponent implements OnInit{
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){}
   signUpPart1!:FormGroup
   showPassword:boolean=false
   showPasswordError:boolean=false
@@ -15,12 +18,14 @@ export class SignUpPart1PageComponent implements OnInit{
   tooltipRegex2=/^(?=.*[a-zA-Z])(?=.*\d).+/
   showUniqueMailError=false
   ngOnInit(): void {
+    const mail=sessionStorage.getItem('mail')
+    const password=sessionStorage.getItem('password')
     this.signUpPart1=this.fb.group({
-      mail:['',[
+      mail:[mail?mail:'',[
         Validators.required,
         Validators.email
       ]],
-      password:['',[
+      password:[password?password:'',[
         Validators.required,
         Validators.maxLength(20),
         Validators.minLength(8),
@@ -33,10 +38,7 @@ export class SignUpPart1PageComponent implements OnInit{
         Validators.pattern(/^(?=.*[0-9])(?=.*[a-zA-Z])[\w!@#$%^&*]*$/)
       ]]
     })
-    const mail=sessionStorage.getItem('mail')
-    const password=sessionStorage.getItem('password')
-    this.getControl("password").setValue(password?password:"")
-    this.getControl("mail").setValue(mail?mail:"")
+   
   }
   getMailError(){
     const control=this.getControl("mail")
@@ -67,6 +69,7 @@ export class SignUpPart1PageComponent implements OnInit{
     this.showPassword=!this.showPassword
   }
   hideError(name:"password"|"mail"){
+    this.showUniqueMailError=false
     if (name==="password")
       this.showPasswordError=false
     else
@@ -85,6 +88,15 @@ export class SignUpPart1PageComponent implements OnInit{
       return 
     }
     sessionStorage.setItem("mail",mailControl.value)
-    sessionStorage.setItem('password',passwordControl.value)//להוסיף בדיקה שהאימייל לא קיים כבר ואם קיים להראות שגיאה אחרת להעביר שלב
+    sessionStorage.setItem('password',passwordControl.value)
+    this.authService.isEmailUnique(mailControl.value).pipe(first()).subscribe((isEmailUnique)=>{
+      if (!isEmailUnique)
+        this.showUniqueMailError=true
+      else {
+        //send validation mail code 
+        this.router.navigate(['sign-up2'])
+      }
+
+    })
   }
 }

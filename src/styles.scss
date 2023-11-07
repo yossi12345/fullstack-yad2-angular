@@ -5,7 +5,7 @@
     color:#363636;
     font-family: Rubik, sans-serif;
 }
-
+html, body { height: 100%; }
 body{
     margin:0;
 }
@@ -14,7 +14,6 @@ body{
     border-radius: 4px;
     padding: 35px 35px 15px;
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,6 +24,7 @@ body{
         height: 50px;
         padding: 10px 15px;
         font-size: 16px;
+        width: 100%;
         &::placeholder{
             color:#999999;
         }
@@ -50,16 +50,45 @@ body{
             background-color: #d86000;
         }
     }
+    .error-input{
+        border-color:red;
+        &:hover,&:focus{
+            border-color:red;
+        }
+    }
+    .error{
+        color:#ff2a2b;
+        font-size: 14px;
+        margin-top: 3px;
+    }
     @media (min-width:880px) {
         box-shadow:0 3px 10px 0 rgba(0,0,0,.1);
         max-width: 510px;
+        height: fit-content;
         width: 36.28vw;
     }
+}
+.clear-img{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 13px;
+    left: 10px;
+    cursor: pointer;
+    display: none;
+}
+.clear-input:focus:not(:placeholder-shown) + .clear-img{
+    display: inline-block;
 }
 .signup-img{
     @media (min-width:880px) {
         display: none;
     }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.relative{
+    position: relative;
+}
+.none{
+    display: none;
+}
+

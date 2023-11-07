@@ -1,0 +1,27 @@
+<app-log-form-wrapper>
+    <div>
+        <div>כניסה למתווכים</div>
+        <form [formGroup]="signInForm" class="log-form">
+            <div class="input-container">
+                <label>מייל</label>
+                <div class="relative">
+                    <input (input)="hideError('mail')" formControlName="mail" [ngClass]="(showMailError?'error-input':'')+' clear-input'" placeholder="yourmail@email.co.il"/>
+                    <img (mousedown)="clearMailInput()" src="/assets/close.svg" class="clear-img"/>
+                </div>
+                <div *ngIf="showMailError" class="error">
+                    {{getMailError()}} 
+                </div>
+            </div>
+            <div class="input-container">
+                <label>סיסמה</label>
+                <div class="password-container">
+                    <input formControlName="password" [type]="showPassword?'text':'password'"  [ngClass]="showPasswordError?'error-input':''" (input)="hideError('password')" placeholder="הקלדת סיסמה"/>
+                    <app-eye-icon-for-pasword-input (eyeClick)="togglePassword()"/>
+                </div>
+                <div *ngIf="showPasswordError" class="error">
+                    {{getPasswordError()}}
+                </div>
+            </div>
+        </form>
+    </div>
+</app-log-form-wrapper>

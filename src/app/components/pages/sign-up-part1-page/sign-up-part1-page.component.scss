@@ -5,19 +5,10 @@
 }
 form{
     gap:30px;
-    @media (min-width:880px) {
-        height: 660px;
-    }
-    .error-input{
-        border-color:red;
-    }
 }
 
 .input-container{
     width:100%;
-    input{
-        width: 100%;
-    }
 }
 .password-container{
     width: 100%;
@@ -25,11 +16,6 @@ form{
     input{
         width:100%;
     }
-}
-.error{
-    color:#ff2a2b;
-    font-size: 14px;
-    margin-top: 3px;
 }
 .text-separation{
     margin-top: -10px;
@@ -69,27 +55,14 @@ form{
     }
 }
 .sign-in{
-    padding-top: 20px;
     a{
         text-decoration: none;
         color: #ff7100;
         font-weight: 500;
     }
-}
-.relative{
-    position: relative;
-}
-.clear-img{
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 13px;
-    left: 10px;
-    cursor: pointer;
-    display: none;
-}
-input:focus:not(:placeholder-shown) + .clear-img{
-    display: inline-block;
+    @media (min-width:880px) {
+        margin-bottom: 30px;
+    }
 }
 .tooltip{
     position: absolute;

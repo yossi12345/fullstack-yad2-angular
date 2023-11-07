@@ -1,0 +1,55 @@
+<app-log-form-wrapper>
+    <form class="log-form" [formGroup]="signUpPart3" (ngSubmit)="handleSubmit()">
+        <img src="/assets/icon_signup.svg" class="signup-img"/>
+        <div class="title">היי, נעים להכיר</div>
+        <div class="input-container">
+            <label>שם פרטי*</label>
+            <div class="relative">
+                <input placeholder="הקלדת שם פרטי" formControlName="firstName" [class]="'clear-input '+(showFirstNameError?'error-input':'')" (input)="onChange('firstName')"/>
+                <img (mousedown)="clearInput('firstName')" src="/assets/close.svg" class="clear-img"/>
+            </div>
+            <div class="error" *ngIf="showFirstNameError">
+                {{getFirstNameError()}}
+            </div>
+        </div>
+        <div class="input-container">
+            <label>שם משפחה*</label>
+            <div class="relative">
+                <input placeholder="הקלדת שם משפחה" formControlName="lastName" [class]="'clear-input '+(showFirstNameError?'error-input':'')" (input)="onChange('lastName')"/>
+                <img (mousedown)="clearInput('lastName')" src="/assets/close.svg" class="clear-img"/>
+            </div>
+            <div class="error" *ngIf="showLastNameError">
+                {{getLastNameError()}}
+            </div>
+        </div>
+        <div class="input-container">
+            <label>מספר טלפון*</label>
+            <input placeholder="מספר נייד" formControlName="phone" [class]="'clear-input '+(showFirstNameError?'error-input':'')" (input)="onPhoneInputChange()"/>
+            <div class="error" *ngIf="showPhoneError">
+                {{getPhoneError()}}
+            </div>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" formControlName="terms" class="input-checkbox">
+            <button type="button" class="checkbox" (click)="changeCheckbox('terms')"></button>
+            <label (click)="changeCheckbox('terms')" >   
+                קראתי ואישרתי את 
+                <a>
+                    תקנון
+                </a>
+                האתר*
+            </label>
+        </div>
+        <div class="error terms-error" *ngIf="showTermsError">
+            היי, לא לשכוח לאשר את התקנון
+        </div>
+        <div class="checkbox-container marginTop-10">
+            <input type="checkbox" class="input-checkbox" formControlName="mailing"/>
+            <button class="checkbox" type="button" (click)="changeCheckbox('mailing')"></button>
+            <label (click)="changeCheckbox('mailing')">
+                אני רוצה לקבל דיוור פרסומי מיד2
+            </label>
+        </div>
+        <button class="submit-btn">סיום הרשמה</button>
+    </form>
+</app-log-form-wrapper>
