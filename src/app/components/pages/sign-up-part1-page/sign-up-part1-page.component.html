@@ -1,0 +1,66 @@
+<app-log-form-wrapper>
+    <form class="log-form" [formGroup]="signUpPart1" (ngSubmit)="handleSubmit()">
+        <img src="/assets/icon_signup.svg" class="signup-img"/>
+        <div class="title">היי, נעים להכיר</div>
+        <div class="input-container">
+            <label>מייל</label>
+            <div class="relative">
+                <input (input)="hideError('mail')" formControlName="mail" [ngClass]="(showMailError?'error-input':'')" placeholder="yourmail@email.co.il"/>
+                <img (mousedown)="clearMailInput()" src="/assets/close.svg" class="clear-img"/>
+            </div>
+            <div *ngIf="showMailError" class="error">
+                {{getMailError()}} 
+            </div>
+        </div>
+        <div class="input-container">
+            <label>סיסמה</label>
+            <div class="password-container">
+                <input formControlName="password" [type]="showPassword?'text':'password'"  [ngClass]="showPasswordError?'error-input':''" (input)="hideError('password')" placeholder="הקלדת סיסמה"/>
+                <div class="tooltip">
+                    <h4>הסיסמה צריכה לכלול:</h4>
+                    <div [ngClass]="tooltipRegex1.test(getControl('password').value)?'valid':'invalid'">
+                        <span></span>
+                        8-20 תווים
+                    </div>
+                    <div class="margin-top10" [ngClass]="tooltipRegex2.test(getControl('password').value)?'valid':'invalid'">
+                        <span></span>
+                        אותיות באנגלית ומספרים
+                    </div>
+                    <div class="triangle"></div>
+                </div>
+                <app-eye-icon-for-pasword-input (eyeClick)="togglePassword()" [isRegularEye]="!showPassword"/>
+            </div>
+        </div>
+        <div class="input-container">
+            <label>אימות סיסמה</label>
+            <div class="password-container">
+                <input formControlName="repeatPassword" [type]="showPassword?'text':'password'"  [ngClass]="showPasswordError?'error-input':''" (input)="hideError('password')" placeholder="הקלדת סיסמה"/>
+                <app-eye-icon-for-pasword-input (eyeClick)="togglePassword()" [isRegularEye]="!showPassword"/>
+            </div>
+            <div *ngIf="showPasswordError" class="error">
+                {{getPasswordError()}}
+            </div>
+        </div>
+        <div class="submit-btn-container">
+            <div class="error" *ngIf="showUniqueMailError"> משהו השתבש, כדאי לנסות שוב</div>
+            <button class="submit-btn">המשך</button>
+        </div>
+       <div class="text-separation">
+        או התחברו דרך
+       </div>
+       <div class="other-ways-to-sign-up-container">
+        <button>
+            <img src="/assets/google.svg"/>
+            גוגל
+        </button>
+        <button>
+            <img src="/assets/apple.svg"/>
+            אפל
+        </button>
+       </div>
+       <div class="sign-in">
+        כבר יש לך חשבון?
+        <a>להתחברות</a>
+       </div>
+    </form>
+</app-log-form-wrapper>
