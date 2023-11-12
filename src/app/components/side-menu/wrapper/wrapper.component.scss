@@ -1,0 +1,52 @@
+.humburger-btn{
+    cursor: pointer;
+}
+.menu-container{
+    position: fixed;
+    top:0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    pointer-events: none;
+    background-color: transparent;
+    transition: all .3s linear;
+    z-index: 1;
+}
+.menu{
+    background-color: white;
+    transition: all .3s linear;
+    position: absolute;
+    top:0;
+    right: -500px;
+    height: 100vh;
+    overflow-y: auto;
+    width:fit-content;
+}
+.show.menu-container{
+    pointer-events: auto;
+    background-color: #00000066;
+    .menu{
+        right: 0;
+    }
+}
+.close-btn{
+    background-color: transparent;
+    border: none;
+    top: 12px;
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    z-index: 1;
+}
+.sign-out{
+    position: absolute;
+    color: #999999;
+    font-size: 14px;
+    font-weight: 300;
+    top: 12px;
+    left: 8px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 2;
+}

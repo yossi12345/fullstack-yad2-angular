@@ -12,4 +12,7 @@ export class LogFormWrapperComponent {
   navigateToPreviousPage(){
     this.location.back()
   }
+  navigateToHomePage(){
+    this.router.navigate(['/'])
+  }
 }

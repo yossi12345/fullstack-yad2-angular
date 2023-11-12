@@ -1,0 +1,59 @@
+:host{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:hover{
+        background-color: rgb(248,248,248);
+    }
+}
+app-icon{
+    margin-top: 3px;
+}
+label{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+}
+.item-container{
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.links-container{
+    position: fixed;
+    top:0;
+    right: -300px;
+    height: 100vh;
+    background-color: white;
+    width: 298.33px;
+    transition: all .2s linear;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: auto;
+    z-index: 2;
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+a{
+    padding: 0 30px;
+}
+a:hover{
+    color:#ff7100;
+}
+.show.links-container{
+    right: 0;
+}
+h3{
+    font-weight: 400;
+    background-color: #eeeeee;
+    font-size: 16px;
+    padding: 14px;
+    display: flex;
+    margin: 0;
+    align-items: center;
+    gap: 13px;
+}

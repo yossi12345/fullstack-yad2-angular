@@ -1,0 +1,17 @@
+<ng-container *ngIf="user">
+    <div class="circle">יד</div>
+    <ul>
+        <li>
+            {{user.firstName+" "+user.lastName}}
+        </li>
+        <li>
+            <a>איזור אישי</a>
+        </li>
+    </ul>
+</ng-container>
+<div *ngIf="!user" class="sign-in-container" (click)="navigateToSignIn()">
+    <div class="person-container">
+        <app-icon name="person" height="32" width="32" color="black"/>
+    </div>
+    <h3>התחברות</h3>
+</div>

@@ -13,6 +13,13 @@ import { FormsModule } from '@angular/forms';
 import { SignUpPart3PageComponent } from './components/pages/sign-up-part3-page/sign-up-part3-page.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { SignInPageComponent } from './components/pages/sign-in-page/sign-in-page.component';
+import { OtherWaysToSignComponent } from './components/other-ways-to-sign/other-ways-to-sign.component';
+import { PasswordTooltipComponent } from './components/password-tooltip/password-tooltip.component';
+import { IconComponent } from './components/icon/icon.component';
+import { WrapperComponent } from './components/side-menu/wrapper/wrapper.component';
+import { UserOptions1Component } from './components/side-menu/user-options1/user-options1.component';
+import { ItemForSelling1Component } from './components/side-menu/item-for-selling1/item-for-selling1.component';
+import { SideMenu1Component } from './components/side-menu/side-menu1/side-menu1.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +30,13 @@ import { SignInPageComponent } from './components/pages/sign-in-page/sign-in-pag
     SignUpPart3PageComponent,
     HomePageComponent,
     SignInPageComponent,
+    OtherWaysToSignComponent,
+    PasswordTooltipComponent,
+    IconComponent,
+    WrapperComponent,
+    UserOptions1Component,
+    ItemForSelling1Component,
+    SideMenu1Component,
   ],
   imports: [
     BrowserModule,

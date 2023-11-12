@@ -15,6 +15,7 @@ export class SignUpPart3PageComponent implements OnInit{
   showLastNameError:boolean=false
   showTermsError:boolean=false
   signUpPart3!:FormGroup
+  isPending:boolean=false
   constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){}
   ngOnInit(): void {
     this.signUpPart3=this.fb.group({
@@ -96,10 +97,13 @@ export class SignUpPart3PageComponent implements OnInit{
       this.showTermsError=false
   }
   handleSubmit(){
+    const phoneControl=this.getControl("phone")
+    const firstNameControl=this.getControl("firstName")
+    const lastNameControl=this.getControl("lastName")
     if (this.signUpPart3.invalid){
-      this.showPhoneError=true
-      this.showFirstNameError=true
-      this.showLastNameError=true
+      this.showPhoneError=phoneControl.invalid
+      this.showFirstNameError=firstNameControl.invalid
+      this.showLastNameError=lastNameControl.invalid
       this.showTermsError=this.getControl('terms').invalid
       console.log(this.getControl('terms'))
       return 
@@ -111,14 +115,20 @@ export class SignUpPart3PageComponent implements OnInit{
       alert("משהו השתבש נתחיל מהתחלה")
       return 
     }
-    this.authService.signUp({
-      phone:this.getControl("phone").value,
-      firstName:this.getControl("firstName").value,
-      lastName:this.getControl("lastName").value,
-      mail,password
-    }).pipe(first()).subscribe((res)=>{
-      if (res)
-        this.router.navigate(['/'],{replaceUrl:true})
+    const user={
+      phone:phoneControl.value,
+      firstName:firstNameControl.value,
+      lastName:lastNameControl.value,
+      mail
+    }
+    this.isPending=true
+    this.authService.signUp(user,password).pipe(first()).subscribe((res)=>{
+        if (res){
+          sessionStorage.removeItem("mail")
+          sessionStorage.removeItem("password")
+          this.router.navigate(['/'],{replaceUrl:true})
+        }
+        this.isPending=false
     })
   }
 }

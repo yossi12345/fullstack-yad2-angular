@@ -2,11 +2,14 @@
     font-size:24px;
     width: 100%;
     text-align: center;
+    margin-top: 20px;
+    @media (min-width:880px) {
+        margin-top: 0;
+    }
 }
 form{
     gap:30px;
 }
-
 .input-container{
     width:100%;
 }
@@ -17,126 +20,15 @@ form{
         width:100%;
     }
 }
-.text-separation{
-    margin-top: -10px;
-    color: #cccccc;
-    display: flex;
-    width: 100%;
-    gap: 20px;
-    font-size: 14px;
-    align-items: center;
-    &::before,&::after{
-        content: "";
-        flex:1;
-        height: 1px;
-        background-color: #cccccc;
-    }
-}
-.other-ways-to-sign-up-container{
-    display: grid;
-    width: 100%;
-    grid-template-columns: 1fr 1fr;
-    gap:15px;
-    margin-top: -20px;
-    button{
-        height: 50px;
-        background-color: transparent;
-        border-radius: 30px;
-        display: flex;
-        font-size: 16px;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        border: 1px solid #cccccc;
-        &:hover{
-            border-color: #ff7304;
-            color: #ff7304;
-        }
-    }
-}
 .sign-in{
     a{
         text-decoration: none;
-        color: #ff7100;
-        font-weight: 500;
     }
     @media (min-width:880px) {
         margin-bottom: 30px;
     }
 }
-.tooltip{
-    position: absolute;
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #cccccc;
-    bottom:calc(100% + 15px);
-    left:20px;
-    display: none;
-    h4{
-        font-size: 16px;
-        margin: 0 0 10px;
-        font-weight: 500;
-    }
-    div{
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-    span{
-        width: 14px;
-        height: 14px;
-        display: flex;
-        border-radius: 100%;
-        background-color: #eeeeee;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 5px;
-    }
-    .invalid{
-        span{
-            &::before{
-                content: "";
-                background-color: #cccccc;
-                height: 4px;
-                width: 4px;
-                display: inline-block;
-                border-radius: 50%;
-            }
-        }
-    }
-    .valid{
-        span{
-            background-color: #dff7ed;
-            &::before{
-                content: '\2714';
-                color: #29aaab;
-                font-size: 11px;
-            }
-        }
-    }
-    .triangle{
-        width: 0;
-        height: 0;
-        border-left: 6px solid transparent;
-        border-right:6px solid transparent;
-        border-top: 8px solid #cccccc;
-        position: absolute;
-        top: 100%;
-        right: 48%;
-        &::after{
-            width: 0;
-            height: 0;
-            content: "";
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 6px solid white;
-            bottom:2px;
-            left: -5px;
-            position: absolute;
-        }
-    }
-}
-input:focus + .tooltip{
+input:focus + app-password-tooltip{
     display: inline-block;
 }
 .margin-top10{

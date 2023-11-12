@@ -50,6 +50,11 @@ body{
             background-color: #d86000;
         }
     }
+    .submit-btn:disabled{
+        background-color: #9ea4a7;
+        color:#9a888f;
+        cursor: not-allowed;
+    }
     .error-input{
         border-color:red;
         &:hover,&:focus{
@@ -69,8 +74,6 @@ body{
     }
 }
 .clear-img{
-    width: 20px;
-    height: 20px;
     position: absolute;
     top: 13px;
     left: 10px;
@@ -84,6 +87,10 @@ body{
     @media (min-width:880px) {
         display: none;
     }
+}
+.orange-color{
+    color: #f77100;
+    font-weight: 500;
 }
 .relative{
     position: relative;

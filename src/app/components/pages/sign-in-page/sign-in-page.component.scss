@@ -8,3 +8,46 @@
         width:100%;
     }
 }
+form{
+    gap: 30px;
+    @media (max-width:880px) {
+        padding-bottom: 80px;
+    }
+}
+.estate-broker-entry{
+    text-align: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+    @media (max-width:880px) {
+        background-color: #f9f9f9;
+        position: fixed;
+        bottom: 0;
+        margin-bottom: 0;
+        width: 100%;
+        padding: 18px 0;
+    }
+}
+.forget-password{
+    text-align: end;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.good-to-see-you{
+    font-weight: 400;
+    font-size: 24px;
+    @media (min-width:880px) {
+        margin-top: 23px;
+    }
+}
+.sign-up-container{
+    margin-top: 10px;
+    a{
+        text-decoration: none;
+    }
+}
+.submit-btn-container{
+    width: 100%;
+    .error{
+        margin-bottom: 10px;
+    }
+}

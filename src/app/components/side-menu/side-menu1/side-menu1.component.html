@@ -1,0 +1,45 @@
+<app-wrapper menuWidth="298.33px">
+    <app-user-options1/>
+    <div class="publish-link-container">
+        <a routerLink="/publish">
+            <app-icon name="plus" width="25" height="25" color="white"/>
+            פרסום מודעה
+        </a>
+    </div>
+     <div class="links-container">
+         <a>
+             <app-icon name="thought-bubble" width="24" height="24" color="black"/>
+             צ'אט
+         </a>
+         <a>
+             <app-icon name="heart" width="24" height="24" color="black"/>
+             מודעות שאהבתי
+             <span class="amount" *ngIf="user?.favoriteApartments?.length">
+                 {{user?.favoriteApartments?.length}}
+             </span>
+         </a>
+         <a>
+             <app-icon name="clock" width="24" height="24" color="black"/>
+             חיפושים אחרונים
+             <span class="amount" *ngIf="user?.lastApartmentSearches?.length">
+                 {{user?.lastApartmentSearches?.length}}
+             </span>
+         </a>
+         <a>
+             <app-icon name="bell" width="24" height="24" color="black"/>
+             התראות
+         </a>
+         <a>
+             <app-icon name="contrary-arrows" width="24" height="24" color="black"/>
+             השוואת רכבים
+         </a>
+     </div>
+     <div class="items-container">
+        <app-item-for-selling1 
+            *ngFor="let item of itemsForSelling"
+            [iconName]="item.iconName" 
+            [itemName]="item.itemName" 
+            [links]="item.groupLinks1.concat(item.groupLinks2)"
+        />
+     </div>
+</app-wrapper>

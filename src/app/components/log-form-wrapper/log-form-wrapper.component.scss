@@ -10,8 +10,8 @@
     }
 }
 .left-button{
-    position: absolute;
-    top:27px;
+    position: fixed;
+    top:32px;
     left: 25px;
     @media (min-width:880px) {
         display: none;
@@ -20,11 +20,11 @@
 .left-section-container{
     font-size: 36px;
     font-weight: 400;
-    flex-direction: column;
-    justify-content: center;
     display: none;
     @media (min-width:880px) {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 .icons-container{
@@ -43,10 +43,11 @@
 }
 .main-container{
     width: 100%;
-    max-width: 1160px;
+    max-width: 1220px;
     @media (min-width:880px) {
         display: grid;
         gap:200px;
+        padding: 0 30px;
         grid-template-columns: 1fr 1fr;
     }
 }

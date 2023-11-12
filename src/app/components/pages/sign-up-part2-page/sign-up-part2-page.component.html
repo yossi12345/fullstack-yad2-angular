@@ -10,14 +10,14 @@
         </div>
         <div class="input-container">
             <input name="code" [(ngModel)]="inputValue" [ngClass]="inputClasses" (input)="onChange($event)" placeholder="הזנת קוד"/>
-            <img src="/assets/close.svg" class="clear-img" (mousedown)="clearInput()"/>
+            <app-icon name="close" class="clear-img" (mousedown)="clearInput()" width="20px" height="20px" color="#9a9a9a"/>
             <div *ngIf="showError" class="error">
                 {{inputValue===""?"לא נוכל להמשיך בלי הקוד":"היי, זה לא הקוד ששלחנו לך"}}
             </div>
         </div>
         <div *ngIf="showSendCodeAgainBtn" class="send-code-again-container">
             לא קיבלתי את המייל. 
-            <span (click)="sendCodeAgain()">
+            <span (click)="sendCodeAgain()" class="orange-color">
                 שלחו לי שוב
             </span> 
             <div>כדאי לבדוק בתיבת הספאם</div>

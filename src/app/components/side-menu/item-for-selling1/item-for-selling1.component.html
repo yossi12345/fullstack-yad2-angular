@@ -1,0 +1,17 @@
+<div  (mouseenter)="openLinks()" class="item-container">
+    <label>
+        <app-icon [name]="iconName" width="24" height="24"/>
+        {{itemName}}
+    </label>
+    <app-icon name="left-arrow" height="24" width="24"/>
+</div>
+<div *ngIf="links.length>0" [class]="'links-container'+(showLinks?' show':'')" (mouseleave)="closeLinks()">
+    <h3 (click)="closeLinks()">
+        <app-icon name="right-arrow" height="24" width="24"/>
+        {{itemName}}
+    </h3>
+    <a *ngFor="let link of links" (click)="navigate(link)">
+        {{link.name}}
+    </a>
+</div>
+  

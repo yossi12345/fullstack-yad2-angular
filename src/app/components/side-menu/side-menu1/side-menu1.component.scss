@@ -1,0 +1,46 @@
+.links-container{
+    padding: 10px 12px 10px 0;
+    border-bottom: 1px solid #e5e5e5;
+    a{
+        height: 50px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 300;
+        cursor: pointer;
+        &:hover{
+            background-color: rgb(248,248,248);
+        }
+    }
+}
+.amount{
+    font-size: 10px;
+    color: white;
+    background-color: #ff7100;
+    height: 14px;
+    width: 16px;
+    text-align: center;
+    border-radius: 100%;
+    margin-right: -5px;
+}
+.publish-link-container{
+    margin-top: -20px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    a{
+        padding:5px 20px;
+        background-color: #0fca80;
+        color: white;
+        text-decoration: none;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+    app-icon{
+        margin-top: 2px;
+    }
+}

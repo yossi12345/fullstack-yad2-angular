@@ -6,7 +6,8 @@
             <label>שם פרטי*</label>
             <div class="relative">
                 <input placeholder="הקלדת שם פרטי" formControlName="firstName" [class]="'clear-input '+(showFirstNameError?'error-input':'')" (input)="onChange('firstName')"/>
-                <img (mousedown)="clearInput('firstName')" src="/assets/close.svg" class="clear-img"/>
+                <app-icon width="20px" height="20px" color="#9a9a9a" class="clear-img" (mousedown)="clearInput('firstName')"/>
+                <!-- <img (mousedown)="clearInput('firstName')" src="/assets/close.svg" class="clear-img"/> -->
             </div>
             <div class="error" *ngIf="showFirstNameError">
                 {{getFirstNameError()}}
@@ -15,8 +16,9 @@
         <div class="input-container">
             <label>שם משפחה*</label>
             <div class="relative">
-                <input placeholder="הקלדת שם משפחה" formControlName="lastName" [class]="'clear-input '+(showFirstNameError?'error-input':'')" (input)="onChange('lastName')"/>
-                <img (mousedown)="clearInput('lastName')" src="/assets/close.svg" class="clear-img"/>
+                <input placeholder="הקלדת שם משפחה" formControlName="lastName" [class]="'clear-input '+(showLastNameError?'error-input':'')" (input)="onChange('lastName')"/>
+                <app-icon width="20px" height="20px" color="#9a9a9a" class="clear-img" (mousedown)="clearInput('lastName')"/>
+                <!-- <img (mousedown)="clearInput('lastName')" src="/assets/close.svg" class="clear-img"/> -->
             </div>
             <div class="error" *ngIf="showLastNameError">
                 {{getLastNameError()}}
@@ -24,7 +26,7 @@
         </div>
         <div class="input-container">
             <label>מספר טלפון*</label>
-            <input placeholder="מספר נייד" formControlName="phone" [class]="'clear-input '+(showFirstNameError?'error-input':'')" (input)="onPhoneInputChange()"/>
+            <input placeholder="מספר נייד" formControlName="phone" [class]="'clear-input '+(showPhoneError?'error-input':'')" (input)="onPhoneInputChange()"/>
             <div class="error" *ngIf="showPhoneError">
                 {{getPhoneError()}}
             </div>
@@ -34,7 +36,7 @@
             <button type="button" class="checkbox" (click)="changeCheckbox('terms')"></button>
             <label (click)="changeCheckbox('terms')" >   
                 קראתי ואישרתי את 
-                <a>
+                <a class="orange-color">
                     תקנון
                 </a>
                 האתר*
@@ -50,6 +52,6 @@
                 אני רוצה לקבל דיוור פרסומי מיד2
             </label>
         </div>
-        <button class="submit-btn">סיום הרשמה</button>
+        <button class="submit-btn" [disabled]="isPending">סיום הרשמה</button>
     </form>
 </app-log-form-wrapper>

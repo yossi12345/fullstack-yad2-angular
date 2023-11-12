@@ -1,0 +1,99 @@
+header{
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top:0;
+    background-color: white;
+    box-shadow: 1px 1px 15px rgba(0,0,0,.2);
+    height: fit-content;
+    @media (min-width:880px) {
+        flex-direction: row-reverse;
+    }
+}
+.logo{
+    width: 50px;
+    height: 24.7px;
+    @media (min-width:880px) {
+        width: 74px;
+        height: 37px;
+        align-self: center;
+    }
+}
+.heart-container,.thought-bubble-container{
+    cursor: pointer;
+    padding: 10px;
+    display: inline-block;
+    img{
+        width: 24px;
+        height: 24px;
+    }
+    &:hover{
+        background-color: #f8f8f8;
+    }
+}
+.heart-container{
+    position: relative;
+    div{
+        background-color: #ff7100;
+        height: 15px;
+        width:fit-content;
+        padding: 5px;
+        position: absolute;
+        top: 6px;
+        right: 5px;
+        color: white;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+    }
+}
+app-side-menu1,.thought-bubble-container{
+    @media (min-width:880px) {
+        display: none;
+    }
+}
+.flex{
+    display: flex;
+}
+.items-for-selling-container{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    ul{
+        padding: 0;
+        list-style: none;
+    }
+}
+.links-container{
+    display: flex;
+    padding: 25px;
+    position: absolute;
+    top: 100%;
+    display: none;
+    box-shadow:3px 10px 0 rgba(0,0,0,.2);
+    background-color: white;
+    a{
+        display: flex;
+    }
+}
+.item{
+    position: relative;
+    height: 37px;
+    align-self: flex-start;
+    .item-name{
+        padding: 0 20px;
+        height: 100%;
+        &:hover{
+            background-color: #eeeeee;
+        }
+    }
+}
+.item:hover .links-container{
+    display: flex;
+}
+

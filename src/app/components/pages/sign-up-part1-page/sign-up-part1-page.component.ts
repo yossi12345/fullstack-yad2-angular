@@ -14,9 +14,8 @@ export class SignUpPart1PageComponent implements OnInit{
   showPassword:boolean=false
   showPasswordError:boolean=false
   showMailError:boolean=false
-  tooltipRegex1=/^.{8,20}$/
-  tooltipRegex2=/^(?=.*[a-zA-Z])(?=.*\d).+/
   showUniqueMailError=false
+  isPending:boolean=false
   ngOnInit(): void {
     const mail=sessionStorage.getItem('mail')
     const password=sessionStorage.getItem('password')
@@ -51,7 +50,6 @@ export class SignUpPart1PageComponent implements OnInit{
   getPasswordError(){
     const passwordControl=this.getControl("password")
     const repeatedPasswordControl=this.getControl("repeatPassword")
-    console.log(passwordControl.getError("required"))
     if (passwordControl.getError("required"))
       return "לא לשכוח להזין סיסמה"
     if (passwordControl.getError("pattern")||repeatedPasswordControl.getError("pattern"))
@@ -89,14 +87,17 @@ export class SignUpPart1PageComponent implements OnInit{
     }
     sessionStorage.setItem("mail",mailControl.value)
     sessionStorage.setItem('password',passwordControl.value)
-    this.authService.isEmailUnique(mailControl.value).pipe(first()).subscribe((isEmailUnique)=>{
-      if (!isEmailUnique)
+    this.showUniqueMailError=false
+    this.isPending=true
+    this.authService.isEmailAlreadyExist(mailControl.value).subscribe((isEmailExist)=>{
+      if (isEmailExist)
         this.showUniqueMailError=true
       else {
         //send validation mail code 
         this.router.navigate(['sign-up2'])
       }
-
+      this.isPending=false
+      console.log("sub",isEmailExist)
     })
   }
 }

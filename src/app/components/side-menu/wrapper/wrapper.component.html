@@ -1,0 +1,10 @@
+<app-icon width="25px" height="25px" name="humburger-button" class="humburger-btn" (click)="toggleMenu()" />
+<div [class]="'menu-container'+(shouldOpenMenu?' show':'')" (click)="toggleMenu()" >
+    <div class="menu" (click)="stopPropagation($event)" [ngStyle]="{width:menuWidth}">
+        <button class="sign-out" (click)="signOut()" *ngIf="user">התנתקות</button>
+        <button class="close-btn" (click)="toggleMenu()" >
+            <app-icon name="close" [height]="closeBtnSize+'px'" [width]="closeBtnSize+'px'" [color]="closeBtnColor"/>
+        </button>
+        <ng-content/>
+    </div>
+</div>

@@ -1,1 +1,38 @@
-<p>home-page works!</p>
+<header>
+    <div>
+        <app-side-menu1/>
+        <div class="heart-container">
+            <div *ngIf="user?.favoriteApartments?.length">{{user?.favoriteApartments?.length}}</div>
+            <img src="/assets/heart.svg"/>
+        </div>
+    </div>
+    <div class="flex">
+        <img src="/assets/logo.svg" class="logo"/>
+        <ul class="items-for-selling-container">
+            <li *ngFor="let item of itemsForSelling" class="item">
+                <a class="item-name">{{item.itemName}}</a>
+                <div class="links-container">
+                    <ul>
+                        <li *ngFor="let link of item.groupLinks1">
+                            <a>
+                                <app-icon *ngIf="link.icon" [name]="link.icon" height="24" width="24"/>
+                                {{link.name}}
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li *ngFor="let link of item.groupLinks2">
+                            <a>
+                                <app-icon *ngIf="link.icon" [name]="link.icon" height="24" width="24"/>
+                                {{link.name}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="thought-bubble-container">
+        <img src="/assets/thought-bubble.svg"/>
+    </div>
+</header>

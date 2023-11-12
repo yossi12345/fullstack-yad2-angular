@@ -10,7 +10,6 @@ export class EyeIconForPaswordInputComponent {
   @Output() eyeClick=new EventEmitter()
   onClick(){
     this.isRegularEye=!this.isRegularEye
-    console.log(this.isRegularEye)
     this.eyeClick.emit(this.isRegularEye)
   }
 }

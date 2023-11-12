@@ -1,12 +1,13 @@
 <app-log-form-wrapper>
     <div>
-        <div>כניסה למתווכים</div>
-        <form [formGroup]="signInForm" class="log-form">
+        <div class="estate-broker-entry">כניסה למתווכים</div>
+        <form [formGroup]="signInForm" class="log-form" (ngSubmit)="handleSubmit()">
+            <div class="good-to-see-you">היי, טוב לראות אותך</div>
             <div class="input-container">
                 <label>מייל</label>
                 <div class="relative">
                     <input (input)="hideError('mail')" formControlName="mail" [ngClass]="(showMailError?'error-input':'')+' clear-input'" placeholder="yourmail@email.co.il"/>
-                    <img (mousedown)="clearMailInput()" src="/assets/close.svg" class="clear-img"/>
+                    <app-icon name="close" class="clear-img" width="20px" height="20px" color="#9a9a9a" (mousedown)="clearMailInput()"/>
                 </div>
                 <div *ngIf="showMailError" class="error">
                     {{getMailError()}} 
@@ -21,6 +22,20 @@
                 <div *ngIf="showPasswordError" class="error">
                     {{getPasswordError()}}
                 </div>
+                <div class="forget-password orange-color">שכחתי סיסמה</div>
+            </div>
+            <div class="submit-btn-container">
+                <div class="error" *ngIf="showLoginFailError">
+                    אימייל או סיסמה אינם תקינים
+                </div>
+                <button class="submit-btn" [disabled]="isPending">התחברות</button>
+            </div>
+            <app-other-ways-to-sign/>
+            <div class="sign-up-container">
+                אין לך חשבון?
+                <a class="orange-color" routerLink="sign-up1">
+                    להרשמה
+                </a>
             </div>
         </form>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -12,7 +13,9 @@ export class SignInPageComponent implements OnInit{
   signInForm!:FormGroup
   showMailError:boolean=false
   showPasswordError:boolean=false
-  constructor(private fb:FormBuilder,private router:Router){}
+  showLoginFailError:boolean=false
+  isPending:boolean=false
+  constructor(private fb:FormBuilder,private router:Router,private authService:AuthService){}
   ngOnInit(): void {
     this.signInForm=this.fb.group({
       mail:['',[
@@ -52,5 +55,25 @@ export class SignInPageComponent implements OnInit{
       this.showMailError=false
     else
       this.showPasswordError=false
+    this.showLoginFailError=false
+  }
+  handleSubmit(){
+    if (this.signInForm.invalid){
+      this.showMailError=true
+      this.showPasswordError=true
+      return 
+    }
+    this.isPending=true
+    this.showLoginFailError=false
+    const mail=this.getControl("mail").value
+    const password=this.getControl("password").value
+    this.authService.signIn(mail,password).subscribe((res)=>{
+      if (!res)
+        this.showLoginFailError=true
+      else
+        this.router.navigate(["/"],{replaceUrl:true})
+      this.isPending=false
+    })
+
   }
 }
