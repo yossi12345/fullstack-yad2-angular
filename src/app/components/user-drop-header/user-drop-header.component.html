@@ -1,0 +1,37 @@
+<ng-container [ngSwitch]="!!user">
+    <div *ngSwitchCase="true" class="profile-container">
+        <div class="circle">יד</div>
+        <div class="name">{{user?.firstName}}</div>
+    </div>
+    <a *ngSwitchCase="false" routerLink="/sign-in" class="sign-in">
+        <div class="icon-container">
+            <app-icon name="person" width="27" height="30"/>
+        </div>
+        <div>התחברות</div>
+    </a>
+    <div class="drop">
+        <a *ngIf="user">
+            <app-icon name="person" height="24" width="24"/>
+            אזור אישי
+        </a>
+        <a>
+            <app-icon name="clock" height="24" width="24"/>
+            <div class="last-searches">
+                חיפושים אחרונים
+                <div class="amount" *ngIf="user?.lastApartmentSearches?.length">{{user?.lastApartmentSearches?.length}}</div>
+            </div>
+        </a>
+        <a>
+            <app-icon name="bell" height="24" width="24"/>
+            התראות
+        </a>
+        <a>
+            <app-icon name="contrary-arrows" height="24" width="24"/>
+            השוואת רכבים
+        </a>
+        <a class="sign-out" *ngIf="user" (click)="signOut()">
+            <app-icon name="door" height="24" width="24"/>
+            התנתקות
+        </a>
+    </div>
+</ng-container>

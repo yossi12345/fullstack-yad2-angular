@@ -1,0 +1,16 @@
+<div class="heart-container">
+    <div class="amount" *ngIf="user?.favoriteApartments?.length">{{user?.favoriteApartments?.length}}</div>
+    <app-icon name="heart" height="24" width="24"/>
+    <label>מודעות שאהבתי</label>
+    <div class="drop">
+        <h5>
+            מודעות שאהבתי
+        </h5>
+        <ng-container *ngIf="user&&(!user.favoriteApartments||user.favoriteApartments.length===0)">
+            הרשימה שלך עדיין ריקה אפשר להוסיף מודעות לרשימה בלחיצה על הסימן בפינה הימנית של כל מודעה    
+        </ng-container>
+        <ng-container *ngIf="!user">
+            אין לך עדיין מודעות שאהבת. כדי לשמור מודעות שאהבת, ולשמור נוספות, יש להתחבר לחשבון שלך            
+        </ng-container>
+    </div>
+</div>

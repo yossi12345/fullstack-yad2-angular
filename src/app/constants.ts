@@ -44,7 +44,7 @@ export const itemsForHeader=[
         groupLinks2:[
             new SubItem("קטלוג רכבים","car2"),
             new SubItem("מחירון רכב","car3"),
-            new SubItem("מימון רכב","caculator"),
+            new SubItem("מימון רכב","calculator"),
         ]
         
     },

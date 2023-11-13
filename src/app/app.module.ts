@@ -20,6 +20,13 @@ import { WrapperComponent } from './components/side-menu/wrapper/wrapper.compone
 import { UserOptions1Component } from './components/side-menu/user-options1/user-options1.component';
 import { ItemForSelling1Component } from './components/side-menu/item-for-selling1/item-for-selling1.component';
 import { SideMenu1Component } from './components/side-menu/side-menu1/side-menu1.component';
+import { UserDropHeaderComponent } from './components/user-drop-header/user-drop-header.component';
+import { FavoriteAdDropHeaderComponent } from './components/favorite-ad-drop-header/favorite-ad-drop-header.component';
+import { ItemsForSellingDropsHeaderComponent } from './components/items-for-selling-drops-header/items-for-selling-drops-header.component';
+import { AdsBannerComponent } from './components/ads-banner/ads-banner.component';
+import { PublishApartmentPageComponent } from './components/pages/publish-apartment-page/publish-apartment-page.component';
+import { FavoritesPageComponent } from './components/pages/favorites-page/favorites-page.component';
+import { PersonalZonePageComponent } from './components/pages/personal-zone-page/personal-zone-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +44,13 @@ import { SideMenu1Component } from './components/side-menu/side-menu1/side-menu1
     UserOptions1Component,
     ItemForSelling1Component,
     SideMenu1Component,
+    UserDropHeaderComponent,
+    FavoriteAdDropHeaderComponent,
+    ItemsForSellingDropsHeaderComponent,
+    AdsBannerComponent,
+    PublishApartmentPageComponent,
+    FavoritesPageComponent,
+    PersonalZonePageComponent,
   ],
   imports: [
     BrowserModule,

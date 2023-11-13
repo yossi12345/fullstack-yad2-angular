@@ -2,27 +2,36 @@ header{
     width: 100%;
     padding: 0 10px;
     display: flex;
+    flex-wrap:wrap;
     align-items: center;
-    justify-content: space-between;
     position: fixed;
+    z-index: 1;
     top:0;
     background-color: white;
     box-shadow: 1px 1px 15px rgba(0,0,0,.2);
     height: fit-content;
+    flex-direction: row-reverse;
+    justify-content: space-between;
     @media (min-width:880px) {
-        flex-direction: row-reverse;
+        justify-content: flex-start;
+        flex-direction: row;
     }
 }
-.logo{
-    width: 50px;
-    height: 24.7px;
-    @media (min-width:880px) {
-        width: 74px;
-        height: 37px;
-        align-self: center;
+.logo-container{
+    img{
+        width: 50px;
+        height: 24.7px;
+        @media (min-width:880px) {
+            width: 74px;
+            height: 37px;
+          
+        }
     }
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
-.heart-container,.thought-bubble-container{
+.thought-bubble-container{
     cursor: pointer;
     padding: 10px;
     display: inline-block;
@@ -34,24 +43,6 @@ header{
         background-color: #f8f8f8;
     }
 }
-.heart-container{
-    position: relative;
-    div{
-        background-color: #ff7100;
-        height: 15px;
-        width:fit-content;
-        padding: 5px;
-        position: absolute;
-        top: 6px;
-        right: 5px;
-        color: white;
-        border-radius: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-    }
-}
 app-side-menu1,.thought-bubble-container{
     @media (min-width:880px) {
         display: none;
@@ -59,41 +50,29 @@ app-side-menu1,.thought-bubble-container{
 }
 .flex{
     display: flex;
-}
-.items-for-selling-container{
-    display: flex;
-    list-style: none;
-    padding: 0;
-    ul{
-        padding: 0;
-        list-style: none;
+    @media (min-width:880px) {
+        margin-left: auto;
     }
 }
-.links-container{
+.publish{
+    padding: 6px 22px;
+    background-color: #0aca80;
+    color: white;
     display: flex;
-    padding: 25px;
-    position: absolute;
-    top: 100%;
-    display: none;
-    box-shadow:3px 10px 0 rgba(0,0,0,.2);
-    background-color: white;
-    a{
-        display: flex;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    border-radius: 24px;
+    height: fit-content;
+    margin-right: 10px;
+    @media (max-width:880px) {
+        display: none;
     }
 }
-.item{
-    position: relative;
-    height: 37px;
-    align-self: flex-start;
-    .item-name{
-        padding: 0 20px;
-        height: 100%;
-        &:hover{
-            background-color: #eeeeee;
-        }
-    }
-}
-.item:hover .links-container{
+
+.header-and-side-menu-container{
     display: flex;
+    align-items: center;
 }
+
 
