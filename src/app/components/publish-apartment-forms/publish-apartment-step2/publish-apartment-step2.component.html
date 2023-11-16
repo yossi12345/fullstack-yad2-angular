@@ -1,0 +1,105 @@
+
+<app-wrapper-publish-apartment-form [label]="label" [summary]="summary" [step]="2" (onSubmit)="onSubmit()" >
+    <form [formGroup]="step2Form">
+        <div class="title">סימנו עבורך את שדות החובה, שלא נפספס פרט חשוב</div>
+        <div class="input-with-options-container">
+            <label>סוג הנכס*</label>
+            <input formControlName="type" readonly [class]="showError('type')?'input-error':''"/>
+            <div></div>
+            <ul>
+                <li [class]="getControl('type').value===type?'choosed':''" *ngFor="let type of apartmentTypes" (mousedown)="setInputValue(type,'type')">
+                    {{type}}
+                </li>
+            </ul>
+            <div class="error" *ngIf="isSubmitted&&getControl('type').invalid">שדה חובה</div>
+        </div>
+        <div class="input-with-options-container">
+            <label>מצב נכס*</label>
+            <input formControlName="condition" readonly [class]="showError('condition')?'input-error':''"/>
+            <div></div>
+            <ul>
+                <li [class]="getControl('condition').value===condition?'choosed':''" *ngFor="let condition of apartmentCondition" (mousedown)="setInputValue(condition,'condition')">
+                    {{condition}}
+                </li>
+            </ul>
+            <div class="error" *ngIf="isSubmitted&&getControl('condition').invalid">שדה חובה</div>
+        </div>
+        <label>כיווני אוויר</label>
+        <div class="inputs-radio-container">
+            <div *ngFor="let amount of [1,2,3,4]">
+                <input type="radio" [value]="amount" formControlName="amountOfAirDirection" [id]="'amountOfAirDirection'+amount"/>
+                <label [for]="'amountOfAirDirection'+amount">{{amount}}</label>
+            </div>
+        </div>
+        <label>נוף פתוח</label>
+        <div class="inputs-radio-container">
+            <div *ngFor="let view of apartmentViews">
+                <input type="radio" [value]="view" formControlName="view" [id]="'amountOfAirDirection-'+view"/>
+                <label [for]="'amountOfAirDirection-'+view">{{view}}</label>
+            </div>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" class="input-checkbox" formControlName="isRearAsset"/>
+            <button class="checkbox" type="button" (click)="changeCheckbox('isRearAsset')"></button>
+            <label (click)="changeCheckbox('isRearAsset')">
+                נכס עורפי
+            </label>
+        </div>
+        <hr class="hr"/>
+        <div class="input-with-options-container">
+            <label>ישוב*</label>
+            <input formControlName="city" [class]="showError('city')?'input-error':''"/>
+            <ul>
+                <li [class]="getControl('city').value===city?'choosed':''" *ngFor="let city of cities" (mousedown)="setInputValue(city,'city')">{{city}}</li>
+            </ul>
+            <div class="error" *ngIf="isSubmitted&&getControl('city').invalid">שדה חובה</div>
+        </div>
+        <div class="input-with-options-container">
+            <label>רחוב*</label>
+            <input formControlName="street" [class]="showError('street')?'input-error':''"/>
+            <ul>
+                <li [class]="getControl('street').value===street?'choosed':''" *ngFor="let street of streets" (mousedown)="setInputValue(street,'street')">{{street}}</li>
+            </ul>
+            <div class="error" *ngIf="showError('street')">שדה חובה</div>
+          <div class="explanation">
+              המידע הזה מגיע מגוף ממשלתי, אם הרחוב שלך לא מופיע,
+              <br/>
+              מומלץ לבחור רחוב קרוב אליך
+             <div class="orange-color">
+                 לא מצאת את הרחוב?
+             </div>
+          </div>
+        </div>
+        <div class="small-inputs-container">
+            <div class="input-container">
+                <label>מס' בית*</label>
+                <input formControlName="streetNumber" [class]="showError('streetNumber')?'input-error':''"/>
+                <div class="error" *ngIf="showError('streetNumber')">שדה חובה</div>
+            </div>
+            <div class="input-container">
+                <label>מס' דירה*</label>
+                <input formControlName="apartmentNumber" [class]="showError('apartmentNumber')?'input-error':''"/>
+                <div class="error" *ngIf="showError('apartmentNumber')">שדה חובה</div>
+            </div>
+        </div>
+        <div class="small-inputs-container">
+            <div class="input-container">
+                <label>קומה*</label>
+                <input [class]="showError('floor')?'input-error':''" formControlName="floor"/>
+                <div class="error" *ngIf="showError('floor')">שדה חובה</div>
+            </div>
+            <div class="input-container">
+                <label>סה"כ קומות בבניין*</label>
+                <input [class]="showError('amountOfFloorsInBuilding')?'input-error':''" formControlName="amountOfFloorsInBuilding"/>
+                <div class="error" *ngIf="showError('amountOfFloorsInBuilding')">שדה חובה</div>
+            </div>
+            <div class="checkbox-container on-poles">
+                <input type="checkbox" formControlName="isOnPoles" class="input-checkbox"/>
+                <div class="checkbox" (click)="changeCheckbox('isOnPoles')"></div>
+                <label (click)="changeCheckbox('isOnPoles')">
+                    על עמודים
+                </label>
+            </div>
+        </div>
+    </form>
+</app-wrapper-publish-apartment-form>

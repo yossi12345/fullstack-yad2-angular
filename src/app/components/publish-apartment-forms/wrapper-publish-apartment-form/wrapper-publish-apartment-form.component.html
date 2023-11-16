@@ -1,0 +1,25 @@
+<div [class]="'body'+(isOpen?' open-step':'')" (click)="openStep()">
+    <div class="right-side">
+        <ng-container [ngSwitch]="!isOpen&&!isDisable">
+            <div class="successful-step" *ngSwitchCase="true"></div>
+            <div [class]="isDisable?'disable-step':'step'" *ngSwitchCase="false">
+                {{step}}
+            </div>
+        </ng-container>
+        <div>
+            <label [class]="isOpen?'title-open':'title-close'">{{label}}</label>
+            <label *ngIf="!isOpen" class="summary">{{summary}}</label>
+        </div>
+    </div>
+    <app-icon  *ngIf="!isDisable&&!isOpen" name="pencil" width="24" height="24" color="#999999"/>
+    <div (click)="stopPropagation($event)" class="form-container-container">
+        <div *ngIf="isOpen" class="form-container">
+            <ng-content/>
+            <div class="navigate-buttons-container">
+                <button (click)="backStep()" *ngIf="step>1" class="back-btn">חזרה</button>
+                <button (click)="nextStep()" *ngIf="step>1&&!isLastStep" class="next-btn">המשך לשלב הבא</button>
+            </div>
+        </div>
+    </div>
+</div>
+

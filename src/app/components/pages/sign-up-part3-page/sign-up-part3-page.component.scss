@@ -9,21 +9,7 @@
 form{
     gap:30px;
 }
-.checkbox-container{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    input{
-        width: 16px;
-        height: 16px;
-    }
-    label{
-        margin: 0;
-    }
-    a{
-        cursor: pointer;
-    }
-}
+
 .marginTop-10{
     margin-top: -10px;
 }
@@ -36,35 +22,7 @@ form{
         margin-bottom: 30px;
     }
 }
-.checkbox{
-    height: 16px;
-    width: 16px;
-    border: 1px solid black;
-    border-radius: 2px;
-    margin-left: 5px;
-}
-.input-checkbox{
-    display: none;
-}
-.input-checkbox:checked +.checkbox{
-    background-color: #ff7100;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    &::before{
-        content: '\2714';
-        font-size: 12px;
-        margin-bottom: 2px;
-    }
-}
-.input-checkbox:not(:checked) + .checkbox{
-    background-color: white;
-    &:focus,&:hover{
-        border-color: #ff7100;
-    }
-}
+
 //שם עם ספרה? יש לנו עסק עם רובוט?
 //שם עם אות אחת? זה שיא גינס
 //נבקש למלא את השם

@@ -11,8 +11,10 @@ export class AuthService {
   private userSub=new BehaviorSubject<null|"pending"|User>(this.token?"pending":null)
   user$=this.userSub.asObservable()
   constructor(private http:HttpClient) {
-    console.log("tret")
     this.updateUserFirstTime()
+  }
+  getUser(){
+    return this.userSub.value
   }
   isEmailAlreadyExist(email:string){
     console.log("hhh",email)

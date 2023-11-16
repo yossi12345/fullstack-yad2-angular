@@ -1,0 +1,51 @@
+:host{
+    display: block;
+    width: 100%;
+}
+form{
+    display: grid;
+    grid-template-areas:"cell1 cell1"
+                        "cell2 cell3";
+    gap: 10px;
+    height: 285px;
+    padding:20px 16px;
+    width: 100%;
+    @media (min-width:880px) {
+       width: 846px;
+       padding: 50px;
+       gap: 30px;
+       grid-template-areas: "cell1 cell2 cell3";
+    }
+}
+.category{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img{
+        margin-top: -27px;
+    }
+    &:hover{
+        label{
+            color:#ff7100
+        }
+    }
+}
+label{
+    margin-top: -20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+}
+.cell1{
+    grid-area: cell1;
+}
+.cell2{
+    grid-area: cell2;
+}
+.cell3{
+    grid-area: cell3;
+}

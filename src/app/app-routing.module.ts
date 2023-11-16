@@ -6,14 +6,31 @@ import { SignUpPart3PageComponent } from './components/pages/sign-up-part3-page/
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { SignInPageComponent } from './components/pages/sign-in-page/sign-in-page.component';
 import { isUserInSignUpProcessGuard } from './guards/is-user-in-sign-up-process.guard';
+import { FavoritesPageComponent } from './components/pages/favorites-page/favorites-page.component';
+import { PersonalZonePageComponent } from './components/pages/personal-zone-page/personal-zone-page.component';
+import { PublishPageComponent } from './components/pages/publish-page/publish-page.component';
+import { PublishApartmentPageComponent } from './components/pages/publish-apartment-page/publish-apartment-page.component';
+import { getApartmentTypesResolver } from './resolvers/get-apartment-types.resolver';
+import { getApartmentFeaturesResolver } from './resolvers/get-apartment-features.resolver';
 
 const routes: Routes = [
   {path:'',component:HomePageComponent,pathMatch:'full'},
   {path:"sign-up1",component:SignUpPart1PageComponent},
-  {path:'sign-up2',component:SignUpPart2PageComponent,canActivate:[isUserInSignUpProcessGuard]},
-  {path:'sign-up3',component:SignUpPart3PageComponent,canActivate:[isUserInSignUpProcessGuard]},
+  {path:'sign-up2',component:SignUpPart2PageComponent,//canActivate:[isUserInSignUpProcessGuard]
+},
+  {path:'sign-up3',component:SignUpPart3PageComponent,//canActivate:[isUserInSignUpProcessGuard]
+},
   {path:'sign-in',component:SignInPageComponent},
-  {path:"**",redirectTo:"sign-up1"}
+  {path:'favorites',component:FavoritesPageComponent},
+  {path:'personal-zone',component:PersonalZonePageComponent},
+  {path:'publish',component:PublishPageComponent},
+  {path:'publish-apartment',component:PublishApartmentPageComponent,
+    resolve:{
+      types:getApartmentTypesResolver,
+      features:getApartmentFeaturesResolver
+    }
+  },
+  {path:"**",redirectTo:"sign-in"}
 ];
 
 @NgModule({

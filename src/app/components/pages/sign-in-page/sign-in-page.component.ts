@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,8 +15,12 @@ export class SignInPageComponent implements OnInit{
   showPasswordError:boolean=false
   showLoginFailError:boolean=false
   isPending:boolean=false
-  constructor(private fb:FormBuilder,private router:Router,private authService:AuthService){}
+  pageToNavigateAfterSignIn?:string
+  constructor(private fb:FormBuilder,private router:Router,private authService:AuthService,private route:ActivatedRoute){}
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params=>{
+      this.pageToNavigateAfterSignIn=params['navigateTo']
+    })
     this.signInForm=this.fb.group({
       mail:['',[
         Validators.required,
@@ -71,7 +75,7 @@ export class SignInPageComponent implements OnInit{
       if (!res)
         this.showLoginFailError=true
       else
-        this.router.navigate(["/"],{replaceUrl:true})
+        this.router.navigate([this.pageToNavigateAfterSignIn?this.pageToNavigateAfterSignIn:"/"],{replaceUrl:true})
       this.isPending=false
     })
 

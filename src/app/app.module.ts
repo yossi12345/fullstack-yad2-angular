@@ -24,9 +24,19 @@ import { UserDropHeaderComponent } from './components/user-drop-header/user-drop
 import { FavoriteAdDropHeaderComponent } from './components/favorite-ad-drop-header/favorite-ad-drop-header.component';
 import { ItemsForSellingDropsHeaderComponent } from './components/items-for-selling-drops-header/items-for-selling-drops-header.component';
 import { AdsBannerComponent } from './components/ads-banner/ads-banner.component';
-import { PublishApartmentPageComponent } from './components/pages/publish-apartment-page/publish-apartment-page.component';
+
 import { FavoritesPageComponent } from './components/pages/favorites-page/favorites-page.component';
 import { PersonalZonePageComponent } from './components/pages/personal-zone-page/personal-zone-page.component';
+import { PublishPageComponent } from './components/pages/publish-page/publish-page.component';
+import { WrapperPublishApartmentFormComponent } from './components/publish-apartment-forms/wrapper-publish-apartment-form/wrapper-publish-apartment-form.component';
+import { PublishApartmentStep1Component } from './components/publish-apartment-forms/publish-apartment-step1/publish-apartment-step1.component';
+import { PublishApartmentStep2Component } from './components/publish-apartment-forms/publish-apartment-step2/publish-apartment-step2.component';
+import { PublishApartmentStep3Component } from './components/publish-apartment-forms/publish-apartment-step3/publish-apartment-step3.component';
+import { PublishApartmentStep4Component } from './components/publish-apartment-forms/publish-apartment-step4/publish-apartment-step4.component';
+import { PublishApartmentStep5Component } from './components/publish-apartment-forms/publish-apartment-step5/publish-apartment-step5.component';
+import { PublishApartmentStep6Component } from './components/publish-apartment-forms/publish-apartment-step6/publish-apartment-step6.component';
+import { PublishApartmentStep7Component } from './components/publish-apartment-forms/publish-apartment-step7/publish-apartment-step7.component';
+import { PublishApartmentPageComponent } from './components/pages/publish-apartment-page/publish-apartment-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,9 +58,19 @@ import { PersonalZonePageComponent } from './components/pages/personal-zone-page
     FavoriteAdDropHeaderComponent,
     ItemsForSellingDropsHeaderComponent,
     AdsBannerComponent,
-    PublishApartmentPageComponent,
+    
     FavoritesPageComponent,
     PersonalZonePageComponent,
+    PublishPageComponent,
+    WrapperPublishApartmentFormComponent,
+    PublishApartmentStep1Component,
+    PublishApartmentStep2Component,
+    PublishApartmentStep3Component,
+    PublishApartmentStep4Component,
+    PublishApartmentStep5Component,
+    PublishApartmentStep6Component,
+    PublishApartmentStep7Component,
+    PublishApartmentPageComponent,
   ],
   imports: [
     BrowserModule,

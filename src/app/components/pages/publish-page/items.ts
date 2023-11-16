@@ -1,0 +1,128 @@
+export interface Item{
+    image:string,
+    imageOnHover:string
+    item:string
+    subItems:string
+    url:string
+    class:string
+    imageToShow:string
+}
+export const items=[
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell1",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell1",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell1",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell2",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell2",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell2",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell2",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell3",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell3",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell3",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell3",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell3",
+    },
+    {
+      image:"assets/beautiful-home.svg",
+      imageOnHover:"assets/beautiful-home2.svg",
+      imageToShow:"assets/beautiful-home.svg",
+      item:'נדל"ן',
+      subItems:"מכירה, השכרה, מסחרי",
+      url:"/publish-apartment",
+      class:"cell3",
+    }
+  ]
