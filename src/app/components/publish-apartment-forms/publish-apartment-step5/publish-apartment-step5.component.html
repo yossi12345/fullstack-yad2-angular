@@ -1,3 +1,58 @@
-<app-wrapper-publish-apartment-form [step]="5" [summary]="summary" [label]="label">
-
+<app-wrapper-publish-apartment-form [step]="5" [summary]="summary" label="תמונות וסרטונים" (onSubmit)="onSubmit()">
+    <form>
+        <div class="font14">
+            ניתן להעלות עד 10 תמונות ע״י גרירה או לחיצה על כפתור הפלוס. אחרי הבחירה, בחרו את מרכז התמונה כדי שתופיע באתר בצורה המוקטנת הטובה ביותר.
+            <br/>
+            אין לכם מה לדאוג, בגלריה התמונה תופיע בגודלה המקורי     
+        </div>
+        <div class="content">
+            <div class="upload">
+                <label>סרטון הנכס</label>
+                <div class="input-container">
+                    <img src="https://www.yad2.co.il/publish-ad/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fmango%2Fillustrations%2Fminispot%2Fmedia_uploads.svg&w=64&q=75"/>
+                    <div>
+                        גרור ושחרר או העלה את הקובץ שלך 
+                    </div>
+                    <input type="file" (input)="onChange($event)" accept=".avi,.mp4" *ngIf="!video"/>
+                    <button *ngIf="video" type="button" class="video-trash-can" (click)="eraseFile(video.file)">
+                        <app-icon name="trash-can" width="24" height="24" color="white"/>
+                    </button>
+                    <video *ngIf="video" [src]="video.src" class="video"></video>
+                </div>
+            </div>
+            <div class="upload" *ngIf="images.length===0">
+                <label>תמונות הנכס</label>
+                <div class="input-container">
+                    <input type="file" accept=".jpg,.png,.jpeg" (input)="onChange($event)" name="image"/>
+                    <img src="https://www.yad2.co.il/publish-ad/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fmango%2Fillustrations%2Fminispot%2Fmedia_uploads.svg&w=64&q=75"/>
+                    <div>
+                        גרור ושחרר או העלה את הקובץ שלך 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="uploaded-images-container">
+            <div *ngFor="let image of images let i=index" class="image-container">
+                <div class="buttons-container">
+                    <button (click)="eraseFile(image.file,i)" >
+                        <app-icon name="trash-can" width="24" height="24" color="white"/>
+                    </button>
+                    <button>
+                        <app-icon name="pencil" width="24" height="24" color="white"/>
+                    </button>
+                </div>
+                <img [src]="image.src"/>
+            </div>
+            <div class="image-container" *ngIf="images.length>0&&images.length<10">
+                <div class="input-container">
+                    <input type="file" accept=".jpg,.png,.jpeg" (input)="onChange($event)" name="image"/>
+                    <img src="https://www.yad2.co.il/publish-ad/_next/image?url=https%3A%2F%2Fassets.yad2.co.il%2Fmango%2Fillustrations%2Fminispot%2Fmedia_uploads.svg&w=64&q=75"/>
+                    <div>
+                        גרור ושחרר או העלה את הקובץ שלך 
+                        ({{images.length}}/10)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </app-wrapper-publish-apartment-form>

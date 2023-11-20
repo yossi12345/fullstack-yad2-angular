@@ -9,11 +9,13 @@ import { Subscription } from 'rxjs';
 })
 export class PublishApartmentPageComponent implements OnInit,OnDestroy{
   subscriber!:Subscription
-
+  features!:string[]
+  types!:string[]
   constructor(private route:ActivatedRoute){}
   ngOnInit(): void {
     this.subscriber=this.route.data.subscribe((res)=>{
-      console.log(res['features'],res['types'])
+      this.types=res['types']
+      this.features=res['features']
     })  
   }
   ngOnDestroy(): void {

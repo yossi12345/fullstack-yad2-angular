@@ -1,3 +1,4 @@
+
 export class SubItem{
     name:string
     icon?:string
@@ -8,14 +9,6 @@ export class SubItem{
         this.url=url
     }
 }
-export enum Condition{
-    "חדש מקבלן(לא גרו בו בכלל)"=1,
-    "חדש (נכס בן עד 10 שנים"=2,
-    "משופץ (שופץ ב5 השנים האחרונות)"=3,
-    "במצב שמור(במצב טוב, לא שופץ)"=4,
-    "דרוש שיפוץ(זקוק לעבודת שיפוץ)"=5
-}
-export const apartmentViews=["ללא","לים","לפארק","לעיר"]
 export const itemsForHeader=[
     {
         url:'',

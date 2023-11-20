@@ -1,3 +1,89 @@
 :host{
     width: 100%;
 }
+form{
+    padding:20px 25px 15px;
+}
+.features-container{
+    display: flex;
+    gap:16px;
+    flex-wrap: wrap;
+    input{
+        display: none;
+    }
+    label{
+        display: flex;
+        height: 42px;
+        width: 187px;
+        padding:0 12px;
+        margin-top: 10px;
+        align-items: center;
+        gap: 4px;
+        font-size: 14px;
+        border: 1px solid rgb(204,204,204);
+        font-weight: 400;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover{
+            border-color: #ff7100; 
+            color: #ff7100;
+            fill: #ff7100;
+        }
+    }
+    input:checked + label{
+        background-color: #fffaf5;
+        border-color: #ff7100;
+        color: #ff7100;
+        fill: #ff7100;
+    }
+}
+.font14{
+    font-size: 14px;
+}
+hr{
+    margin-bottom: 27px;
+    border:1px solid #eeeeee;
+}
+h4{
+    margin: 26px 0 20px;
+    font-size: 17.6px;
+}
+.description-container{
+    font-size: 14px;
+    width: fit-content;
+    position: relative;
+    font-weight: 400;
+    label{
+        font-weight: 700;
+    }
+    .cheering{
+        display: flex;
+        justify-content: space-between;
+        &>:last-child{
+            color:#999999;
+        }
+    }
+    .bar{
+        position: absolute;
+        top: 34px;
+        background-color: #eeeeee;
+        width: 330px;
+        height: 5px;
+        div{
+            height: 100%;
+        }
+    }
+    textarea{
+        resize: none;
+        width: 330px;
+        height: 93.81px;
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        outline: 1px solid #eeeeee;
+        border-radius: 5px;
+        &:hover{
+            outline: 1px solid black;
+        }
+    }
+}

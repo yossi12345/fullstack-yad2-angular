@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, map, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 
@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PublishApartmentService {
-  private stepOpenIndexSub=new BehaviorSubject<number>(2)
+  private stepOpenIndexSub=new BehaviorSubject<number>(6)//לא ניתן לשמור תמונות במחסן ולכן לא מדלגים על שלב 5
   stepOpenIndex$=this.stepOpenIndexSub.asObservable()  
 
   private amountOfSteps=7
@@ -19,9 +19,6 @@ export class PublishApartmentService {
   getStepData(step:number){
     return this.apartmentData[step-1]
   }
-  check(){
-    console.log(this.stepOpenIndexSub.value)
-  }
   getAmountOfSteps(){
     return this.amountOfSteps
   }
@@ -32,8 +29,6 @@ export class PublishApartmentService {
     this.apartmentData[step-1]=data
     sessionStorage.setItem('apartmentData',JSON.stringify(this.apartmentData))
     this.stepOpenIndexSub.next(step+1)
-    console.log("s",step)
-    this.check()
   }
   getTypes(){
     return this.http.get(environment.SERVER_URL+"PublishApartment/types").
@@ -53,11 +48,18 @@ export class PublishApartmentService {
         })
       )
   }
-  getCities(){
-    this.http.get('https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&limit=20&offset=0&&plain=false&q={"שם_רחוב":"שבט:*","שם_ישוב":"חיפה"}').
-    subscribe(res=>{
-        console.log(res)
-    })
+  getCities(search:string){
+    const q=JSON.stringify({['שם_ישוב']:search+":*"})
+    return this.http.get('https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&distinct=true&fields=שם_ישוב&sort=שם_ישוב&q='+q).
+      pipe(map((res:any)=>
+        (res.result.records as Array<any>).map(obj=>obj['שם_ישוב'])
+      ))
   }
-
+  getStreets(search:string){
+    const q=JSON.stringify({['שם_רחוב']:search+":*"})
+    return this.http.get('https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&distinct=true&fields=שם_רחוב&sort=שם_רחוב&q='+q).
+      pipe(map((res:any)=>
+        (res.result.records as Array<any>).map(obj=>obj['שם_רחוב'])
+      ))
+  }
 }

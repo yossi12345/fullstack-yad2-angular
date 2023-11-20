@@ -1,5 +1,5 @@
 
-<app-wrapper-publish-apartment-form [label]="label" [summary]="summary" [step]="2" (onSubmit)="onSubmit()" >
+<app-wrapper-publish-apartment-form label="כתובת הנכס" [summary]="summary" [step]="2" (onSubmit)="onSubmit()" >
     <form [formGroup]="step2Form">
         <div class="title">סימנו עבורך את שדות החובה, שלא נפספס פרט חשוב</div>
         <div class="input-with-options-container">
@@ -11,18 +11,18 @@
                     {{type}}
                 </li>
             </ul>
-            <div class="error" *ngIf="isSubmitted&&getControl('type').invalid">שדה חובה</div>
+            <div class="error" *ngIf="showError('type')">שדה חובה</div>
         </div>
         <div class="input-with-options-container">
             <label>מצב נכס*</label>
             <input formControlName="condition" readonly [class]="showError('condition')?'input-error':''"/>
             <div></div>
             <ul>
-                <li [class]="getControl('condition').value===condition?'choosed':''" *ngFor="let condition of apartmentCondition" (mousedown)="setInputValue(condition,'condition')">
+                <li [class]="getControl('condition').value===condition?'choosed':''" *ngFor="let condition of apartmentConditions" (mousedown)="setInputValue(condition,'condition')">
                     {{condition}}
                 </li>
             </ul>
-            <div class="error" *ngIf="isSubmitted&&getControl('condition').invalid">שדה חובה</div>
+            <div class="error" *ngIf="showError('condition')">שדה חובה</div>
         </div>
         <label>כיווני אוויר</label>
         <div class="inputs-radio-container">
@@ -48,19 +48,19 @@
         <hr class="hr"/>
         <div class="input-with-options-container">
             <label>ישוב*</label>
-            <input formControlName="city" [class]="showError('city')?'input-error':''"/>
+            <input formControlName="city" [class]="(showError('city')||showCityError)?'input-error':''" (input)="getCities()"/>
             <ul>
-                <li [class]="getControl('city').value===city?'choosed':''" *ngFor="let city of cities" (mousedown)="setInputValue(city,'city')">{{city}}</li>
+                <li *ngFor="let city of cities" (mousedown)="setInputValue(city,'city')">{{city}}</li>
             </ul>
-            <div class="error" *ngIf="isSubmitted&&getControl('city').invalid">שדה חובה</div>
+            <div class="error" *ngIf="showError('city')||showCityError">שדה חובה</div>
         </div>
         <div class="input-with-options-container">
             <label>רחוב*</label>
-            <input formControlName="street" [class]="showError('street')?'input-error':''"/>
+            <input formControlName="street" [class]="(showError('street')||showStreetError)?'input-error':''" (input)="getStreets()"/>
             <ul>
-                <li [class]="getControl('street').value===street?'choosed':''" *ngFor="let street of streets" (mousedown)="setInputValue(street,'street')">{{street}}</li>
+                <li *ngFor="let street of streets" (mousedown)="setInputValue(street,'street')">{{street}}</li>
             </ul>
-            <div class="error" *ngIf="showError('street')">שדה חובה</div>
+            <div class="error" *ngIf="showError('street')||showStreetError">שדה חובה</div>
           <div class="explanation">
               המידע הזה מגיע מגוף ממשלתי, אם הרחוב שלך לא מופיע,
               <br/>

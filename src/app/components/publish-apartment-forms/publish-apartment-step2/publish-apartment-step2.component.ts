@@ -1,6 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Condition,apartmentViews } from 'src/app/constants';
+import { forkJoin } from 'rxjs';
+import { APARTMENT_CONDITIONS, APARTMENT_VIEWS } from 'src/app/Dictionaries';
 import { PublishApartmentService } from 'src/app/services/publish-apartment.service';
 
 @Component({
@@ -8,57 +9,62 @@ import { PublishApartmentService } from 'src/app/services/publish-apartment.serv
   templateUrl: './publish-apartment-step2.component.html',
   styleUrls: ['./publish-apartment-step2.component.scss']
 })
-export class PublishApartmentStep2Component implements OnInit,OnDestroy{
-  label="כתובת הנכס"
+export class PublishApartmentStep2Component implements OnInit{
   @Input() apartmentTypes!:string[]
-  apartmentCondition:string[]=Object.values(Condition).filter(c=>typeof c==='string') as string[]
+  apartmentConditions:string[]=Object.keys(APARTMENT_CONDITIONS)
   step2Form!:FormGroup
   summary:string=""
-  apartmentViews=apartmentViews
+  apartmentViews:string[]=Object.keys(APARTMENT_VIEWS)
   cities:string[]=[]
   streets:string[]=[]
-  regexForPositiveInteger=/^[1-9]\d*$/
+  regexForPositiveInteger=/^[0-9]\d*$/
   isSubmitted:boolean=false
+  showStreetError:boolean=false
+  showCityError:boolean=false
   constructor(private fb:FormBuilder,private publishService:PublishApartmentService){}
   ngOnInit(): void {
+    const data:any=this.publishService.getStepData(2)
     this.step2Form=this.fb.group({
-      type:['',Validators.required],
-      condition:['',Validators.required],
-      amountOfAirDirection:[1,[
+      type:[data?.type??'',Validators.required],
+      condition:[data?.condition??'',Validators.required],
+      amountOfAirDirection:[data?.amountOfAirDirection??1,[
         Validators.required
       ]],
-      view:[this.apartmentViews[0],[
+      view:[data?.view??this.apartmentViews[0],[
         Validators.required
       ]],
-      isRearAsset:[false,[
+      isRearAsset:[data?.isRearAsset??false,[
         Validators.required
       ]],
-      city:['',[
-        Validators.required
+      city:[data?.city??'',[
+        Validators.required,
+        Validators.pattern(/^[\u05D0-\u05EA\s\-\'\(\)]+$/)
+      ],],
+      street:[data?.street??'',[
+        Validators.required,
+        Validators.pattern(/^[\u05D0-\u05EA\s\-\'\(\)]+$/)
       ]],
-      street:['',[
-        Validators.required
-      ]],
-      streetNumber:['',[
+      streetNumber:[data?.streetNumber??'',[
         Validators.required,
         Validators.pattern(this.regexForPositiveInteger)
       ]],
-      floor:['',[
+      floor:[data?.floor??'',[
         Validators.required,
         Validators.pattern(this.regexForPositiveInteger)
       ]],
-      amountOfFloorsInBuilding:['',[
+      amountOfFloorsInBuilding:[data?.amountOfFloorsInBuilding??'',[
         Validators.required,
         Validators.pattern(this.regexForPositiveInteger)
       ]],
-      isOnPoles:[false,[
+      isOnPoles:[data?.isOnPoles??false,[
         Validators.required
       ]],
-      apartmentNumber:['',[
+      apartmentNumber:[data?.apartmentNumber??'',[
         Validators.required,
         Validators.pattern(this.regexForPositiveInteger)
       ]]
     })
+    this.updateSummary(this.step2Form.getRawValue())
   }
   getControl(name:string){
     return this.step2Form.get(name) as FormControl
@@ -71,20 +77,42 @@ export class PublishApartmentStep2Component implements OnInit,OnDestroy{
     control.setValue(!control.value)
   }
   onSubmit(){
-    this.cli()
-    console.log("ertew",this.step2Form.getRawValue())
     if (this.step2Form.invalid){
       this.isSubmitted=true
       return 
     }
+    const formData=this.step2Form.getRawValue()
+    forkJoin({cities:this.publishService.getCities(formData.city),streets:this.publishService.getStreets(formData.street)})
+      .subscribe((res:any)=>{
+        console.log(res)
+        if (res.streets[0]===formData.street&&res.cities[0]===formData.city){
+          this.updateSummary(formData)
+          formData.view=APARTMENT_VIEWS[formData.view]
+          formData.condition=APARTMENT_CONDITIONS[formData.condition]
+          this.publishService.onSubmitStep(2,formData)
+        }
+        else{
+          this.showCityError=res.cities[0]===formData.city
+          this.showStreetError=res.streets[0]===formData.street
+        }
+      })
+  }
+  updateSummary({city,type,street,streetNumber,floor}:any){
+    this.summary=type+" - "+city+" - "+street+" - "+streetNumber+" - קומה "+floor
   }
   showError(controlName:string){
     return this.isSubmitted&&this.getControl(controlName).invalid
   }
-  cli(){
-    this.publishService.getCities()
+  getCities(){
+    const search=this.getControl("city").value
+    this.publishService.getCities(search).subscribe((cities)=>{
+      this.cities=cities
+    })
   }
-  ngOnDestroy(): void {
-    
+  getStreets(){
+    const search=this.getControl("street").value
+    this.publishService.getStreets(search).subscribe((streets)=>{
+      this.streets=streets
+    })
   }
 }

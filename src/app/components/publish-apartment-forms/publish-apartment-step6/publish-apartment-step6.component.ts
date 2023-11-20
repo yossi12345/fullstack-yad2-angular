@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./publish-apartment-step6.component.scss']
 })
 export class PublishApartmentStep6Component {
-  label="פרטי תקשורת"
   summary:string=""
   
 }

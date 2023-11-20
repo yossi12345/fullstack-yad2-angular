@@ -1,5 +1,61 @@
-<app-wrapper-publish-apartment-form [step]="3" [summary]="summary" [label]="label">
-    <form>
-        
+<app-wrapper-publish-apartment-form [step]="3" [summary]="summary" label="על הנכס" (onSubmit)="onSubmit()">
+    <form [formGroup]="step3Form">
+        <div class="input-with-options-container">
+            <label>*מספר חדרים</label>
+            <input formControlName="amountOfRooms" readonly [class]="showError('amountOfRooms')?'input-error':''"/>
+            <div></div>
+            <ul>
+                <li [class]="getControl('amountOfRooms').value===amount?'choosed':''" *ngFor="let amount of arrForAmountOfRooms" (mousedown)="setInputValue(amount+'','amountOfRooms')">
+                    {{amount}}
+                </li>
+            </ul>
+            <div class="error" *ngIf="showError('amountOfRooms')">שדה חובה</div>
+        </div>
+        <label class="font14">חדרי מקלחת</label>
+        <div class="inputs-radio-container">
+            <div *ngFor="let amount of arrForAmountOfShowerRooms">
+                <input type="radio" [value]="amount" formControlName="amountOfShowerRooms" [id]="'amountOfShowerRooms'+amount"/>
+                <label [for]="'amountOfShowerRooms'+amount">{{amount}}</label>
+            </div>
+        </div>
+        <label class="font14">חניה</label>
+        <div class="inputs-radio-container">
+            <div *ngFor="let amount of arrForAmountOfParkingPlaces">
+                <input type="radio" [value]="amount" formControlName="amountOfParkingPlaces" [id]="'amountOfParkingPlaces'+amount"/>
+                <label [for]="'amountOfParkingPlaces'+amount">{{amount}}</label>
+            </div>
+        </div>
+        <label class="font14">מרפסת</label>
+        <div class="inputs-radio-container">
+            <div *ngFor="let amount of arrForAmountOfBalcony">
+                <input type="radio" [value]="amount" formControlName="amountOfBalcony" [id]="'amountOfBalcony'+amount"/>
+                <label [for]="'amountOfBalcony'+amount">{{amount}}</label>
+            </div>
+        </div>
+        <hr/>
+        <label class="font14">מאפייני הנכס</label>
+        <div class="features-container" formGroupName="features">
+            <div *ngFor="let feature of features">
+                <input [formControlName]="feature" type="checkbox" [id]="'apartmentFeatures-'+feature" />
+                <label [for]="'apartmentFeatures-'+feature">{{feature}}</label>
+            </div>
+        </div>
+        <h4>מה חשוב לכם שידעו על הנכס?</h4>
+        <div class="description-container">
+            <label>פרוט הנכס</label>
+            <div class="cheering">
+                <div [ngStyle]="{color:textareaDetails.descriptionColor}">{{textareaDetails.description}}</div>
+                <div>{{getControl('description').value.length}}/400</div>
+            </div>
+            <div class="bar">
+                <div [ngStyle]="{width:textareaDetails.barWidth,backgroundColor:textareaDetails.barColor}"></div>
+            </div>
+            <textarea (input)="updateTextareaDetails()" formControlName="description" placeholder="זה המקום לתאר את הפרטים הבולטים, למשל, האם נערך שיפוץ במבנה, מה שופץ, כיווני אוויר, האווירה ברחוב וכו'"></textarea>
+            <div>
+                אין צורך להוסיף מספר טלפון כחלק מהתיאור, בהמשך 
+                <br/>
+                התהליך יש אזור מסודר לזה
+            </div>
+        </div>
     </form>
 </app-wrapper-publish-apartment-form>

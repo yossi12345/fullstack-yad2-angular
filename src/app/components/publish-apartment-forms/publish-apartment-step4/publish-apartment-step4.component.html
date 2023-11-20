@@ -1,3 +1,51 @@
-<app-wrapper-publish-apartment-form [label]="label" [step]="4" [summary]="summary">
-
+<app-wrapper-publish-apartment-form label="תשלומים תאריכים ועוד" [step]="4" [summary]="summary" (onSubmit)="onSubmit()">
+    <form [formGroup]="step4Form">
+        <div>
+            <label class="font-weight500">מ"ר בנוי</label>
+            <br/>
+            <input formControlName="builtArea" placeholder='כמה מ"ר יש בנכס' [class]="(isSubmitted&&getControl('builtArea').invalid)?'input-error':''"/>
+            <br/>
+            <div class="error" *ngIf="(isSubmitted&&getControl('builtArea').invalid)">משהו לא תקין</div>
+        </div>
+        <div>
+            <label class="font-weight500">גודל במ"ר סך הכל*</label>
+            <br/>
+            <input formControlName="area" [class]="(isSubmitted&&getControl('area').invalid)?'input-error':''" (input)="updatePricePerMeter()"/>
+            <br/>
+            <div class="error" *ngIf="(isSubmitted&&getControl('area').invalid)">שדה חובה</div>
+        </div>
+        <div class="relative">
+            <label class="font-weight500">מחיר*</label>
+            <br/>
+            <div class="price-icon">₪</div>
+            <input formControlName="price" placeholder="סכום מינימלי 100" [class]="(isSubmitted&&getControl('price').invalid)?'input-error':''" (input)="updatePricePerMeter()"/>
+            <br/>
+            <div class="error" *ngIf="(isSubmitted&&getControl('price').invalid)">שדה חובה</div>
+        </div>
+        <div class="relative">
+            <label class="font-weight500 color-cccccc">מחיר למטר</label>
+            <br/>
+            <div class="price-icon">₪</div>
+            <input formControlName="pricePerMeter"/>
+        </div>
+        <div class="date-inputs-container">
+            <div>
+                <label class="font-weight500">תאריך כניסה*</label>
+                <br/>
+                <input type="date" [min]="today" formControlName="entryDate" [class]="(isSubmitted&&getControl('entryDate').invalid)||showEntryDateError?'input-error':''">
+                <br/>
+                <div class="error" *ngIf="(isSubmitted&&getControl('entryDate').invalid)||showEntryDateError">שדה חובה</div>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" formControlName="isEntryDateImmidiate" class="input-checkbox" />
+                <button type="button" class="checkbox" (click)="handleChangeCheckbox('isEntryDateImmidiate')"></button>
+                <label (click)="handleChangeCheckbox('isEntryDateImmidiate')" >מיידי</label>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" formControlName="isEntryDateFlexible" class="input-checkbox"/>
+                <button type="button" class="checkbox" (click)="handleChangeCheckbox('isEntryDateFlexible')"></button>
+                <label (click)="handleChangeCheckbox('isEntryDateFlexible')" >גמיש</label>
+            </div>
+        </div>
+    </form>
 </app-wrapper-publish-apartment-form>

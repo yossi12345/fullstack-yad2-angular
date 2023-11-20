@@ -1,3 +1,54 @@
 :host{
     width: 100%;
 }
+label{
+    font-size: 14px;
+}
+.font-weight500{
+    font-weight: 500;
+}
+input{
+    padding: 0 11px;
+    width: 260px;
+    height: 44px;
+    margin-bottom: 24px;
+    font-size: 18px;
+    outline: none;
+    border:1px solid rgb(204,204,204);
+    &::placeholder{
+        color: rgb(204,204,204);
+    }
+    &:hover,&:focus{
+        outline: none;
+        border-color: black;
+    }
+}
+form{
+    padding: 28px 25px 34px;
+}
+.price-icon{
+    font-size: 14px;
+    pointer-events: none;
+    right: 235px;
+    position: absolute;
+    top: 32px;
+}
+.date-inputs-container{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    .checkbox-container{
+        width: fit-content;
+    }
+    &>:first-child:has(input:disabled){
+        label{
+            color:#cccccc;
+        }
+    }
+}
+.color-cccccc{
+    color: #cccccc;
+}
+.error{
+    margin:-24px 0 10px;
+}

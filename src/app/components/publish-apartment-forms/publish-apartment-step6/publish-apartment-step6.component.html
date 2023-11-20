@@ -1,3 +1,57 @@
-<app-wrapper-publish-apartment-form [step]="6" [label]="label" [summary]="summary">
+<app-wrapper-publish-apartment-form [step]="6" label="פרטי התקשרות" [summary]="summary">
+    <form>
+        <div>
+            באיזה מספר המתעניינים יוכלו להשיג אותך?
+        </div>
+        <div>
+            <div>
+                <label>
+                    השם שלך*
+                </label>
+                <input/>
+                <div>+</div>
+            </div>
+            <div>
+                <label>
+                    טלפון*
+                </label>
+                <input/>
+                <div>+</div>
+            </div>
+        </div>
+        <button>
 
+        </button>
+        <div class="checkbox-container">
+            <input type="checkbox" formControlName="terms" class="input-checkbox">
+            <button type="button" class="checkbox"></button>
+            <label >   
+                אני רוצה שיופיע מספר וירטואלי במודעה שלי
+                המספר הוירטואלי יינתן בחינם בכפוף למדיניות השירות ולמעט במקרים המפורטים כאן      
+            </label>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" formControlName="terms" class="input-checkbox">
+            <button type="button" class="checkbox"></button>
+            <label >   
+               קבל שיחות בשבת 
+            </label>
+        </div>
+        <hr/>
+        <div class="checkbox-container">
+            <input type="checkbox" formControlName="terms" class="input-checkbox">
+            <button type="button" class="checkbox"></button>
+            <label >   
+               רק לאשר את 
+               <a class="orange-color">התקנון*</a>
+            </label>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" formControlName="terms" class="input-checkbox">
+            <button type="button" class="checkbox"></button>
+            <label >   
+                אשמח לקבל עדכונים, פרסומים, הצעות או טיפים בקשר ללוח המודעות ביד2   
+            </label>
+        </div>
+    </form>
 </app-wrapper-publish-apartment-form>
