@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { forkJoin } from 'rxjs';
-import { APARTMENT_CONDITIONS, APARTMENT_VIEWS } from 'src/app/Dictionaries';
+import { APARTMENT_CONDITIONS, APARTMENT_VIEWS, getKeyByValue } from 'src/app/Dictionaries';
 import { PublishApartmentService } from 'src/app/services/publish-apartment.service';
 
 @Component({
@@ -26,11 +26,11 @@ export class PublishApartmentStep2Component implements OnInit{
     const data:any=this.publishService.getStepData(2)
     this.step2Form=this.fb.group({
       type:[data?.type??'',Validators.required],
-      condition:[data?.condition??'',Validators.required],
+      condition:[data?getKeyByValue(APARTMENT_CONDITIONS,data.condition):'',Validators.required],
       amountOfAirDirection:[data?.amountOfAirDirection??1,[
         Validators.required
       ]],
-      view:[data?.view??this.apartmentViews[0],[
+      view:[data?getKeyByValue(APARTMENT_VIEWS,data.view):this.apartmentViews[0],[
         Validators.required
       ]],
       isRearAsset:[data?.isRearAsset??false,[

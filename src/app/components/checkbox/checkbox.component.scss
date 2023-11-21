@@ -1,0 +1,39 @@
+:host{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    label{
+        margin: 0;
+    }
+    a{
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
+.checkbox{
+    height: 16px;
+    width: 16px;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin-left: 5px;
+}
+
+.checkbox.checked{
+    background-color: #ff7100;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    &::before{
+        content: '\2714';
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+}
+.checkbox:not(.checked){
+    background-color: white;
+    &:focus,&:hover{
+        border-color: #ff7100;
+    }
+}

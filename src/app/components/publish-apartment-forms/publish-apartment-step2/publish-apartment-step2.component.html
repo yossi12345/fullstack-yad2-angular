@@ -38,13 +38,14 @@
                 <label [for]="'amountOfAirDirection-'+view">{{view}}</label>
             </div>
         </div>
-        <div class="checkbox-container">
+        <!-- <div class="checkbox-container">
             <input type="checkbox" class="input-checkbox" formControlName="isRearAsset"/>
             <button class="checkbox" type="button" (click)="changeCheckbox('isRearAsset')"></button>
             <label (click)="changeCheckbox('isRearAsset')">
                 נכס עורפי
             </label>
-        </div>
+        </div> -->
+        <app-checkbox label="נכס עורפי" (onChange)="changeCheckbox('isRearAsset')" [isChecked]="getControl('isRearAsset').value"/>
         <hr class="hr"/>
         <div class="input-with-options-container">
             <label>ישוב*</label>
@@ -93,13 +94,14 @@
                 <input [class]="showError('amountOfFloorsInBuilding')?'input-error':''" formControlName="amountOfFloorsInBuilding"/>
                 <div class="error" *ngIf="showError('amountOfFloorsInBuilding')">שדה חובה</div>
             </div>
-            <div class="checkbox-container on-poles">
+            <!-- <div class="checkbox-container on-poles">
                 <input type="checkbox" formControlName="isOnPoles" class="input-checkbox"/>
                 <div class="checkbox" (click)="changeCheckbox('isOnPoles')"></div>
                 <label (click)="changeCheckbox('isOnPoles')">
                     על עמודים
                 </label>
-            </div>
+            </div> -->
+            <app-checkbox class="on-poles" label="על עמודים" (onChange)="changeCheckbox('isOnPoles')" [isChecked]="getControl('isOnPoles').value"/>
         </div>
     </form>
 </app-wrapper-publish-apartment-form>

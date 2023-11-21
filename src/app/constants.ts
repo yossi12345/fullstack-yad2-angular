@@ -9,6 +9,7 @@ export class SubItem{
         this.url=url
     }
 }
+export const PHONE_NUMBER_REGEX=/^(050|052|053|054|057|058)-\d{7}$/ 
 export const itemsForHeader=[
     {
         url:'',

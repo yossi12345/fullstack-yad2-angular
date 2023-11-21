@@ -37,6 +37,8 @@ import { PublishApartmentStep5Component } from './components/publish-apartment-f
 import { PublishApartmentStep6Component } from './components/publish-apartment-forms/publish-apartment-step6/publish-apartment-step6.component';
 import { PublishApartmentStep7Component } from './components/publish-apartment-forms/publish-apartment-step7/publish-apartment-step7.component';
 import { PublishApartmentPageComponent } from './components/pages/publish-apartment-page/publish-apartment-page.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { PackageForPublishApartmentComponent } from './components/publish-apartment-forms/package-for-publish-apartment/package-for-publish-apartment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +73,8 @@ import { PublishApartmentPageComponent } from './components/pages/publish-apartm
     PublishApartmentStep6Component,
     PublishApartmentStep7Component,
     PublishApartmentPageComponent,
+    CheckboxComponent,
+    PackageForPublishApartmentComponent,
   ],
   imports: [
     BrowserModule,

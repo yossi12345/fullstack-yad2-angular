@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { first } from 'rxjs';
+import { PHONE_NUMBER_REGEX } from 'src/app/constants';
 
 @Component({
   selector: 'app-sign-up-part3-page',
@@ -16,6 +17,7 @@ export class SignUpPart3PageComponent implements OnInit{
   showTermsError:boolean=false
   signUpPart3!:FormGroup
   isPending:boolean=false
+  t:string=""
   constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){}
   ngOnInit(): void {
     this.signUpPart3=this.fb.group({
@@ -31,7 +33,7 @@ export class SignUpPart3PageComponent implements OnInit{
       ]],
       phone:['',[
         Validators.required,
-        Validators.pattern(/^(050|052|053|054|057|058)-\d{7}$/)
+        Validators.pattern(PHONE_NUMBER_REGEX)
       ]],
       terms:[,[
         Validators.requiredTrue

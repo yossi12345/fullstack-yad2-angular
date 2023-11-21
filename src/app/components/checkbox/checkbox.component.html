@@ -1,0 +1,10 @@
+<button type="button" [class]="'checkbox'+(isChecked?' checked':'')" (click)="onClick()"></button>
+<label *ngIf="label" (click)="onClick()" [ngStyle]="{fontSize}">{{label}}</label>
+<label (click)="onClick()" *ngIf="labelAsParts" [ngStyle]="{fontSize}">   
+    {{labelAsParts.beforeATag}}
+    <a class="orange-color" (click)="navigateToUrl()" [ngStyle]="{fontSize}">
+        {{labelAsParts.aTag}}
+    </a>
+    {{labelAsParts.afterATag}}
+</label>
+

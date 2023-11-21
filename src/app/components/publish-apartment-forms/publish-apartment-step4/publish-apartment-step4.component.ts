@@ -51,6 +51,7 @@ export class PublishApartmentStep4Component implements OnInit{
     const entryDateControl=this.getControl('entryDate')
     const isEntryDateImmidiateControl=this.getControl('isEntryDateImmidiate')
     const isEntryDateFlexibleControl=this.getControl('isEntryDateFlexible')
+    console.log("&&")
     if (inputName==='isEntryDateFlexible'&&!isEntryDateFlexibleControl.value){
       isEntryDateFlexibleControl.setValue(true)
       isEntryDateImmidiateControl.setValue(false)

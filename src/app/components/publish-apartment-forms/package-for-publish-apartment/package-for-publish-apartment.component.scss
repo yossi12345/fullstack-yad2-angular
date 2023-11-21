@@ -1,0 +1,43 @@
+.body{
+    width: 244px;
+    height: 531px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fafafa;
+    border-radius: 20px;
+    border: 2px solid #e0e0e0;
+    padding: 24px 15px 32px;
+    cursor: pointer;
+}
+hr{
+    border-color: #eeeeee;
+    margin: 20px 16px;
+    width: 100%;
+}
+button{
+    width: 155px;
+    height: 48px;
+    border-radius: 30px;
+    border: 1px solid rgb(204,204,204);
+    font-size: 18px;
+    background-color: white;
+}
+img{
+    width: 146px;
+    height: 95px;
+}
+h2{
+    font-weight: 500;
+    font-size: 24px;
+}
+.checked{
+    border-color: #0fca80;
+    background-color: white;
+    button{
+        background-color: #0fca80;
+        color: white;
+        font-weight: 500;
+        border: none;
+    }
+}

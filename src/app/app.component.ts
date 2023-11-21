@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'yad2-angular';
+  onChangeTemp(event:Event){
+    const filesArray=(event.target as HTMLInputElement).files
+    if (!filesArray) return 
+    const file=filesArray[0]
+    
+  }
 }

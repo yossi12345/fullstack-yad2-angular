@@ -1,3 +1,65 @@
-<app-wrapper-publish-apartment-form [step]="7" [label]="label" [summary]="summary">
-
+<app-wrapper-publish-apartment-form [step]="7" label="בחירת מסלול" [summary]="summary" (onSubmit)="onSubmit()">
+    <div class="body">
+        <p>
+            זהו, אנחנו בסוף. לנו נשאר לשמור את המודעה שלך, לך נשאר לבחור את מסלול הפרסום.
+        </p>
+        <p>
+            באיזה מסלול לפרסם את המודעה? זה הרגע לבלוט מעל כולם
+        </p>
+        <div class="packages-container">
+            <app-package-for-publish-apartment iconSrc="https://dev-assets.yad2.co.il/publish-ad/kite.svg" [adType]="adTypes[0]" [choosed]="choosedAd===adTypes[0]" (onChoose)="onChoosed(adTypes[0])">
+                <ul class="package-details">
+                    <li>
+                        <div class="v-sign">&#x2713;</div>
+                        מודעה רגילה ללא הדגשה
+                    </li>
+                    <li>
+                        <div class="v-sign">&#x2713;</div>
+                        הקפצה ידנית כל 4 שעות
+                    </li>
+                </ul>
+                <h1>לא משודרגת</h1>
+                <div class="days-amount">חינם</div>
+            </app-package-for-publish-apartment>
+            <app-package-for-publish-apartment iconSrc="https://dev-assets.yad2.co.il/publish-ad/rocket.svg" [adType]="adTypes[2]" [choosed]="choosedAd===adTypes[2]" (onChoose)="onChoosed(adTypes[2])">
+                <ul class="package-details">
+                    <li>
+                        <div class="v-sign">&#x2713;</div>
+                        מופיעה בצהוב לכולם
+                    </li>
+                    <li>
+                        <div class="v-sign">&#x2713;</div>
+                        מכירה מהירה יותר בלי צורך להתפשר על מחיר
+                    </li>
+                    <li>
+                        <div class="v-sign">&#x2713;</div>
+                        <div class="new">חדש</div>
+                        הקפצה אוטומטית כל 4 שעות
+                    </li>
+                </ul>
+                <h1>₪399</h1>
+                <div class="days-amount">90 ימים</div>
+            </app-package-for-publish-apartment>
+            <app-package-for-publish-apartment iconSrc="https://dev-assets.yad2.co.il/publish-ad/plane.svg" [adType]="adTypes[1]" [choosed]="choosedAd===adTypes[1]" (onChoose)="onChoosed(adTypes[1])" >
+                <ul class="package-details">
+                    <li>
+                        <div class="v-sign">&#x2713;</div>
+                        מופיעה בצהוב לכולם
+                    </li>
+                    <li>
+                        <div class="v-sign">&#x2713;</div>
+                        מכירה מהירה יותר בלי צורך להתפשר על מחיר
+                    </li>
+                    <li>
+                        <div class="v-sign">&#x2713;</div>
+                        <div class="new">חדש</div>
+                        הקפצה אוטומטית כל 4 שעות
+                    </li>
+                </ul>
+                <h1>₪229</h1>
+                <div class="days-amount">28 ימים</div>
+            </app-package-for-publish-apartment>
+        </div>
+        <app-checkbox label="אני מאשר את קבלת דיוור פרסומי הקשור למודעה שפרסמתי באתר יד 2 (להסרה - יש להוריד את הסימון בתיבה)" [needToChange]="true" fontSize="14px"/>
+    </div>
 </app-wrapper-publish-apartment-form>

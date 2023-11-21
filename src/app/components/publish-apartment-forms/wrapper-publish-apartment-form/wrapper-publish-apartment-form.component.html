@@ -8,7 +8,7 @@
         </ng-container>
         <div>
             <label [class]="isOpen?'title-open':'title-close'">{{label}}</label>
-            <label *ngIf="!isOpen" class="summary">{{summary}}</label>
+            <label *ngIf="!isOpen&&!isDisable" class="summary">{{summary}}</label>
         </div>
     </div>
     <app-icon  *ngIf="!isDisable&&!isOpen" name="pencil" width="24" height="24" color="#999999"/>
@@ -17,7 +17,7 @@
             <ng-content/>
             <div class="navigate-buttons-container">
                 <button (click)="backStep()" *ngIf="step>1" class="back-btn">חזרה</button>
-                <button (click)="nextStep()" *ngIf="step>1&&!isLastStep" class="next-btn">המשך לשלב הבא</button>
+                <button (click)="nextStep()" *ngIf="step>1" class="next-btn">המשך לשלב הבא</button>
             </div>
         </div>
     </div>

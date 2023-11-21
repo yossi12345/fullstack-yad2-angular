@@ -1,3 +1,108 @@
 :host{
     width: 100%;
 }
+.title{
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+form{
+    padding:15px 24px 47px ;
+}
+.input-container{
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    label{
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 3px;
+    }
+    input{
+        padding: 11px;
+        width: 260px;
+        height: 44px;
+        border: 1px solid rgb(204,204,204);
+        border-radius: 5px;
+        &:hover,&:focus{
+            border-color: black;
+            outline: none;
+        }
+    }
+    .plus{
+        position: absolute;
+        width: 24px;
+        background-color: #fff1e5;
+        height: 24px;
+        border-radius: 100%;
+        color:#ff7100;
+        font-weight: 500;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        pointer-events: none;
+        top: 28px;
+        right: 225px;
+    }
+}
+.change-amount-of-phones-btn{
+    color: #ff7f30;
+    background-color: transparent;
+    display: flex;
+    margin-bottom: 34px;
+    gap: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    align-items: center;
+    div{
+        color: #ff7f30;
+        height: 14px;
+        width: 14px;
+        border-radius: 100%;
+        border: 1px solid #ff7f30;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+    }
+}
+.checkbox-with-question-mark{
+    display: flex;
+    width: fit-content;
+    gap: 5px;
+}
+.question-mark{
+    width: 14px;
+    height: 14px;
+    border:2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: black;
+    font-weight: 600;
+    border-radius: 100%;
+}
+.explaination{
+    font-size: 14px;
+    color: #999999;
+    padding-right: 20px;
+    margin-bottom: 15px;
+}
+hr{
+    margin: 30px 0;
+    width: 605px;
+    border: 1px solid #ebebeb;
+}
+.terms{
+    background-color: #f8f8f8;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-right: -10px;
+    width: fit-content;
+    border-radius: 10px;
+}
+.terms-error{
+    margin:-18px 0 20px;
+}

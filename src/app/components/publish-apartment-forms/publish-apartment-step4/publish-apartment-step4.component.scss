@@ -37,9 +37,9 @@ form{
     display: flex;
     align-items: center;
     gap: 15px;
-    .checkbox-container{
-        width: fit-content;
-    }
+    // .checkbox-container{
+    //     width: fit-content;
+    // }
     &>:first-child:has(input:disabled){
         label{
             color:#cccccc;
@@ -51,4 +51,7 @@ form{
 }
 .error{
     margin:-24px 0 10px;
+}
+.fit-content{
+    width: fit-content;
 }

@@ -36,16 +36,18 @@
                 <br/>
                 <div class="error" *ngIf="(isSubmitted&&getControl('entryDate').invalid)||showEntryDateError">שדה חובה</div>
             </div>
-            <div class="checkbox-container">
+            <!-- <div class="checkbox-container">
                 <input type="checkbox" formControlName="isEntryDateImmidiate" class="input-checkbox" />
                 <button type="button" class="checkbox" (click)="handleChangeCheckbox('isEntryDateImmidiate')"></button>
                 <label (click)="handleChangeCheckbox('isEntryDateImmidiate')" >מיידי</label>
-            </div>
-            <div class="checkbox-container">
+            </div> -->
+            <app-checkbox label="מיידי" (onChange)="handleChangeCheckbox('isEntryDateImmidiate')" [isChecked]="getControl('isEntryDateImmidiate').value" class="fit-content"/>
+            <!-- <div class="checkbox-container">
                 <input type="checkbox" formControlName="isEntryDateFlexible" class="input-checkbox"/>
                 <button type="button" class="checkbox" (click)="handleChangeCheckbox('isEntryDateFlexible')"></button>
                 <label (click)="handleChangeCheckbox('isEntryDateFlexible')" >גמיש</label>
-            </div>
+            </div> -->
+            <app-checkbox label="גמיש" (onChange)="handleChangeCheckbox('isEntryDateFlexible')" [isChecked]="getControl('isEntryDateFlexible').value" class="fit-content"/>
         </div>
     </form>
 </app-wrapper-publish-apartment-form>

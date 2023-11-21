@@ -31,7 +31,7 @@
                 {{getPhoneError()}}
             </div>
         </div>
-        <div class="checkbox-container">
+        <!-- <div class="checkbox-container">
             <input type="checkbox" formControlName="terms" class="input-checkbox">
             <button type="button" class="checkbox" (click)="changeCheckbox('terms')"></button>
             <label (click)="changeCheckbox('terms')" >   
@@ -41,17 +41,19 @@
                 </a>
                 האתר*
             </label>
-        </div>
+        </div> -->
+        <app-checkbox [labelAsParts]="{beforeATag:'קראתי ואישרתי את ',aTag:'תקנון ',afterATag:'האתר*'}" (onChange)="changeCheckbox('terms')" [isChecked]="getControl('terms').value"/>
         <div class="error terms-error" *ngIf="showTermsError">
             היי, לא לשכוח לאשר את התקנון
         </div>
-        <div class="checkbox-container marginTop-10">
+        <!-- <div class="checkbox-container marginTop-10">
             <input type="checkbox" class="input-checkbox" formControlName="mailing"/>
             <button class="checkbox" type="button" (click)="changeCheckbox('mailing')"></button>
             <label (click)="changeCheckbox('mailing')">
                 אני רוצה לקבל דיוור פרסומי מיד2
             </label>
-        </div>
+        </div> -->
+        <app-checkbox label="אני רוצה לקבל דיוור פרסומי מיד2" class="marginTop-10" (onChange)="changeCheckbox('mailing')" [isChecked]="getControl('mailing').value"/>
         <button class="submit-btn" [disabled]="isPending">סיום הרשמה</button>
     </form>
 </app-log-form-wrapper>

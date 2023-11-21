@@ -1,57 +1,65 @@
-<app-wrapper-publish-apartment-form [step]="6" label="פרטי התקשרות" [summary]="summary">
-    <form>
-        <div>
+<app-wrapper-publish-apartment-form [step]="6" label="פרטי התקשרות" [summary]="summary" (onSubmit)="onSubmit()">
+    <form [formGroup]="step6Form">
+        <div class="title">
             באיזה מספר המתעניינים יוכלו להשיג אותך?
         </div>
         <div>
-            <div>
+            <div class="input-container">
                 <label>
                     השם שלך*
                 </label>
-                <input/>
-                <div>+</div>
+                <input formControlName="name1" (input)="onNameInputChange('name1')"/>
+                <div class="error" *ngIf="getControl('phone1').invalid&&isSubmitted">שדה חובה</div>
             </div>
-            <div>
+            <div class="input-container">
                 <label>
                     טלפון*
                 </label>
-                <input/>
-                <div>+</div>
+                <input formControlName="phone1" (input)="onPhoneInputChange('phone1')"/>
+                <div class="plus">+</div>
+                <div class="error" *ngIf="getControl('phone1').invalid&&isSubmitted">שדה חובה</div>
             </div>
         </div>
-        <button>
-
-        </button>
-        <div class="checkbox-container">
-            <input type="checkbox" formControlName="terms" class="input-checkbox">
-            <button type="button" class="checkbox"></button>
-            <label >   
-                אני רוצה שיופיע מספר וירטואלי במודעה שלי
-                המספר הוירטואלי יינתן בחינם בכפוף למדיניות השירות ולמעט במקרים המפורטים כאן      
-            </label>
+        <div *ngIf="amountOfPhoneNumbers>1">
+            <div class="input-container">
+                <label>
+                    השם שלך*
+                </label>
+                <input formControlName="name2" (input)="onNameInputChange('name2')"/>
+                <div class="error" *ngIf="getControl('name2').invalid&&isSubmitted&&amountOfPhoneNumbers===2">שדה חובה</div>
+            </div>
+            <div class="input-container">
+                <label>
+                    טלפון*
+                </label>
+                <input formControlName="phone2" (input)="onPhoneInputChange('phone2')"/>
+                <div class="plus">+</div>
+                <div class="error" *ngIf="getControl('phone2').invalid&&isSubmitted&&amountOfPhoneNumbers===2">שדה חובה</div>
+            </div>
         </div>
-        <div class="checkbox-container">
-            <input type="checkbox" formControlName="terms" class="input-checkbox">
-            <button type="button" class="checkbox"></button>
-            <label >   
-               קבל שיחות בשבת 
-            </label>
+        <button (click)="handleChangeAmountOfPhoneNumbers()" type="button" class="change-amount-of-phones-btn">
+            <div>{{amountOfPhoneNumbers===1?'+':'-'}}</div>
+            {{amountOfPhoneNumbers===1?'הוספת איש קשר נוסף':'הסר איש קשר נוסף'}}
+        </button>
+        <div>
+            <div class="checkbox-with-question-mark">
+                <app-checkbox label="אני רוצה שיופיע מספר וירטואלי במודעה שלי" fontSize="14px" [needToChange]="true"/>
+                <div class="question-mark">?</div>
+            </div>
+            <div class="explaination">
+                המספר הוירטואלי יינתן בחינם בכפוף למדיניות השירות למעט במקרים המפורטים
+                <a class="orange-color">
+                    כאן
+                </a>
+            </div>
+        </div>
+        <div class="checkbox-with-question-mark">
+            <app-checkbox label="קבל שיחות בשבת" [needToChange]="true" fontSize="14px"/>
+            <div class="question-mark">?</div>
         </div>
         <hr/>
-        <div class="checkbox-container">
-            <input type="checkbox" formControlName="terms" class="input-checkbox">
-            <button type="button" class="checkbox"></button>
-            <label >   
-               רק לאשר את 
-               <a class="orange-color">התקנון*</a>
-            </label>
-        </div>
-        <div class="checkbox-container">
-            <input type="checkbox" formControlName="terms" class="input-checkbox">
-            <button type="button" class="checkbox"></button>
-            <label >   
-                אשמח לקבל עדכונים, פרסומים, הצעות או טיפים בקשר ללוח המודעות ביד2   
-            </label>
-        </div>
+        <app-checkbox [labelAsParts]="{beforeATag:'רק לאשר את ',aTag:'התקנון*'}" fontSize="14px" (onChange)="changeTermsCheckbox()" class="terms" [isChecked]="getControl('terms').value"/>
+        <div class="error terms-error" *ngIf="getControl('terms').invalid&&isSubmitted">חובה לאשר את התקנון</div>
+        <app-checkbox label="אשמח לקבל עדכונים, פרסומים, הצעות או טיפים בקשר ללוח המודעות ביד2  " [needToChange]="true" fontSize="14px"/>
     </form>
 </app-wrapper-publish-apartment-form>

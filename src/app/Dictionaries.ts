@@ -1,6 +1,9 @@
 type Dictionary={
     [key:string]:string|null|number
 }
+export function getKeyByValue(dict: Dictionary, value: string | null | number): string | undefined {
+    return Object.keys(dict).find(key => dict[key] === value);
+}
 export const APARTMENT_CONDITIONS:Dictionary={
     "חדש מקבלן(לא גרו בו בכלל)":1,
     "חדש (נכס בן עד 10 שנים":2,
@@ -32,4 +35,9 @@ export const APARTMENT_VIEWS:Dictionary={
     "לים":"לים",
     "לפארק":"לפארק",
     "לעיר":"לעיר"
+}
+export const APARTMENT_ADS_TYPES:Dictionary={
+    "אפורה":1,
+    "צהובה":2,
+    "VIP צהובה":3
 }

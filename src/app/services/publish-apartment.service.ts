@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PublishApartmentService {
-  private stepOpenIndexSub=new BehaviorSubject<number>(6)//לא ניתן לשמור תמונות במחסן ולכן לא מדלגים על שלב 5
+  private stepOpenIndexSub=new BehaviorSubject<number>(1)
   stepOpenIndex$=this.stepOpenIndexSub.asObservable()  
 
   private amountOfSteps=7
@@ -15,6 +15,8 @@ export class PublishApartmentService {
   constructor(private http:HttpClient) {
     const apartmentData=sessionStorage.getItem("apartmentData")
     this.apartmentData=apartmentData?JSON.parse(apartmentData):[]
+    if (this.apartmentData.length>0)
+      this.stepOpenIndexSub.next(this.apartmentData.length>=5?5:this.apartmentData.length)
   }
   getStepData(step:number){
     return this.apartmentData[step-1]
@@ -28,7 +30,13 @@ export class PublishApartmentService {
   onSubmitStep(step:number,data:object){
     this.apartmentData[step-1]=data
     sessionStorage.setItem('apartmentData',JSON.stringify(this.apartmentData))
-    this.stepOpenIndexSub.next(step+1)
+    if (step!==this.amountOfSteps)
+      this.stepOpenIndexSub.next(step+1)
+    else
+      this.createApartment()
+  }
+  createApartment(){
+
   }
   getTypes(){
     return this.http.get(environment.SERVER_URL+"PublishApartment/types").

@@ -1,0 +1,9 @@
+<div [class]="'body'+(choosed?' checked':'')" (click)="onClick()" >
+    <img [src]="iconSrc"/>
+    <h2>מודעה {{adType}}</h2>
+    <hr/>
+    <ng-content/>
+    <button>
+        בחירת מסלול
+    </button>
+</div>

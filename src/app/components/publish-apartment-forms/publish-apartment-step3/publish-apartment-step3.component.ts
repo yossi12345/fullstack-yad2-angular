@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {  FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { APARTMENT_AMOUNT_OF_BALCONY, APARTMENT_AMOUNT_OF_PARKING_PLACES, APARTMENT_AMOUNT_OF_SHOWER_ROOMS } from 'src/app/Dictionaries';
+import { APARTMENT_AMOUNT_OF_BALCONY, APARTMENT_AMOUNT_OF_PARKING_PLACES, APARTMENT_AMOUNT_OF_SHOWER_ROOMS, getKeyByValue } from 'src/app/Dictionaries';
 import { PublishApartmentService } from 'src/app/services/publish-apartment.service';
 
 @Component({
@@ -33,13 +33,13 @@ export class PublishApartmentStep3Component implements OnInit{
       amountOfRooms:[data?.amountOfRooms??1,[
         Validators.required
       ]],
-      amountOfShowerRooms:[data?.amountOfShowerRooms??this.arrForAmountOfShowerRooms[0],[
+      amountOfShowerRooms:[data?getKeyByValue(APARTMENT_AMOUNT_OF_SHOWER_ROOMS,data.amountOfShowerRooms):this.arrForAmountOfShowerRooms[0],[
         Validators.required
       ]],
-      amountOfParkingPlaces:[data?.amountOfParkingPlaces??this.arrForAmountOfParkingPlaces[0],[
+      amountOfParkingPlaces:[data?getKeyByValue(APARTMENT_AMOUNT_OF_PARKING_PLACES,data.amountOfParkingPlaces):this.arrForAmountOfParkingPlaces[0],[
         Validators.required
       ]],
-      amountOfBalcony:[data?.amountOfBalcony??this.arrForAmountOfBalcony[0],[
+      amountOfBalcony:[data?getKeyByValue(APARTMENT_AMOUNT_OF_BALCONY,data.amountOfBalcony):this.arrForAmountOfBalcony[0],[
         Validators.required
       ]],
       description:[data?.description??''],
