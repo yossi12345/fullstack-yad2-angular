@@ -1,0 +1,96 @@
+<div [class]="'wrapper'+(showDetails?' open':'')" (click)="toggleDetails()">
+    <div class="image-container">
+        <img [src]="mainImagePath"/>
+        <div [ngSwitch]="isUserLikeThisApartment" (click)="patchUserFavoriteApartments($event)">
+            <app-icon name="heart" width="18" height="18" *ngSwitchCase="false"/>
+            <app-icon name="full-heart" *ngSwitchCase="true" width="16" height="16" color="#ff7100"/>
+        </div>
+    </div>
+    <div class="first-part">
+        <div>{{apartment.street+" "+apartment.streetNumber}}</div>
+        <div>{{apartment.type.name+", "+apartment.city}}</div>
+    </div>
+    <div class="middle-part">
+        <div>
+            <div>
+                {{apartment.amountOfRooms}}
+            </div>
+            <div>חדרים</div>
+        </div>
+        <div>
+            <div>{{apartment.floor!==0?apartment.floor:"קרקע"}}</div>
+            <div>קומה</div>
+        </div>
+        <div>
+            <div>{{apartment.area}}</div>
+            <div>מ"ר</div>
+        </div>
+    </div>
+    <div class="price">
+        <a [routerLink]="'/apartments/'+apartment.id" target="_blank" class="apartment-link">
+            <app-icon name="open-in-new-window" height="10" color="gray" width="10"/>
+        </a>
+        <div>₪{{apartment.price.toLocaleString()}}</div>
+        <div *ngIf="apartment.phones&&apartment.phones.length>0" class="phone-container"  >
+            <button (click)="togglePhone($event)" >
+                <app-icon name="phone" color="white" width="20" height="20"/>
+                הצגת מספר טלפון
+            </button>
+            <ul *ngIf="showPhone" >
+                <li>{{apartment.phones[0].name}}</li>
+                <li>{{apartment.phones[0].phone}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="more-details-container" *ngIf="showDetails" >
+    <div class="ads-container"></div>
+    <div class="details">
+        <div class="description">
+            <h6>תיאור הנכס</h6>
+            <div>{{apartment.description}}</div>
+        </div>
+        <ul class="general-details">
+            <div>
+                <li>
+                    מצב הנכס
+                    <b>{{getApartmentCondition(apartment.condition)}}</b>
+                </li>
+                <li>
+                    תאריך כניסה
+                    <b>{{apartment.entryDate | date:"dd/MM/yyyy"}}</b>
+                </li>
+                <li *ngIf="apartment.builtArea">
+                    מ"ר בנוי
+                    <b>{{apartment.builtArea}}</b>
+                </li>
+                <li>
+                    כמות מרפסות
+                    <b>{{apartment.amountOfBalcony}}</b>
+                </li>
+            </div>
+            <div>
+                <li *ngIf="apartment.amountOfFloorsInBuilding">
+                    קומות בבנין
+                    <b>{{apartment.amountOfFloorsInBuilding}}</b>
+                </li>
+                <li>
+                    כמות חניות
+                    <b>{{apartment.amountOfParkingPlaces}}</b>
+                </li>
+                <li *ngIf="apartment.isEntryDateFlexible!==null">
+                    תאריך כניסה
+                    <b>כניסה {{apartment.isEntryDateFlexible?"גמישה":"מיידית"}}</b>
+                </li>
+            </div>
+        </ul>
+        <div class="features">
+            <h5>מה יש בנכס?</h5>
+            <ul>
+                <li *ngFor="let feature of features" [class]="apartmentHasTheFeature(feature)?'has':''">
+                    {{feature}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

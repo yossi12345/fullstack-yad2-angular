@@ -6,7 +6,7 @@ export function getKeyByValue(dict: Dictionary, value: string | null | number): 
 }
 export const APARTMENT_CONDITIONS:Dictionary={
     "חדש מקבלן(לא גרו בו בכלל)":1,
-    "חדש (נכס בן עד 10 שנים":2,
+    "חדש (נכס בן עד 10 שנים)":2,
     "משופץ (שופץ ב5 השנים האחרונות)":3,
     "במצב שמור(במצב טוב, לא שופץ)":4,
     "דרוש שיפוץ(זקוק לעבודת שיפוץ)":5
@@ -29,6 +29,15 @@ export const APARTMENT_AMOUNT_OF_BALCONY:Dictionary={
     "2":2,
     "3":3,
     "4":4,
+}
+export const SEARCH_ORDER_BY:Dictionary={
+    "לפי תאריך":"date",
+    "מחיר - מהזול ליקר":"price",
+    "מחיר - מהיקר לזול":"price descending"
+}
+export const SEARCH_FILTERS:Dictionary={
+    "עם מחיר":"price",
+    "עם תמונה":"image"
 }
 export const APARTMENT_VIEWS:Dictionary={
     "ללא":null,

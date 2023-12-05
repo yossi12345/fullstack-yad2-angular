@@ -12,11 +12,11 @@ export class SubItem{
 export const PHONE_NUMBER_REGEX=/^(050|052|053|054|057|058)-\d{7}$/ 
 export const itemsForHeader=[
     {
-        url:'',
+        url:'/search-apartment',
         iconName:'home',
         itemName:'נדל"ן',
         groupLinks1:  [
-            new SubItem("דירות למכירה"),
+            new SubItem("דירות למכירה",undefined,'/search-apartment'),
             new SubItem("דירות להשכרה"),
             new SubItem('נדל"ן מסחרי'),
             new SubItem("בתים מארחים"),
@@ -29,7 +29,6 @@ export const itemsForHeader=[
         ]
     },
     {
-        url:'',
         iconName:'car',
         itemName:'רכב',
         groupLinks1:[
@@ -51,7 +50,6 @@ export const itemsForHeader=[
         
     },
     {
-        url:'',
         iconName:'sofa',
         itemName:'יד שנייה',
         groupLinks1:[
@@ -73,7 +71,6 @@ export const itemsForHeader=[
         
     },
     {
-        url:'',
         iconName:'bag',
         itemName:'דרושים IL',
         groupLinks1:[
@@ -92,7 +89,6 @@ export const itemsForHeader=[
         
     },
     {
-        url:'',
         iconName:'bag2',
         itemName:'עסקים למכירה',
         groupLinks1:[
@@ -111,7 +107,6 @@ export const itemsForHeader=[
         
     },
     {
-        url:'',
         iconName:'dog',
         itemName:'חיות מחמד',
         groupLinks1:[
@@ -130,7 +125,6 @@ export const itemsForHeader=[
         
     },
     {
-        url:'',
         iconName:'wrench',
         itemName:'בעלי מקצוע',
         groupLinks1:[  
@@ -148,7 +142,6 @@ export const itemsForHeader=[
         groupLinks2:[]
     },
     {
-        url:'',
         iconName:'open-book',
         itemName:"מגזין יד2",
         groupLinks1:[],

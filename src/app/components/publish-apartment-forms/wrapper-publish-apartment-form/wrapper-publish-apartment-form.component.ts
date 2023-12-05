@@ -21,7 +21,6 @@ export class WrapperPublishApartmentFormComponent implements OnInit,OnDestroy{
     this.subscriber=this.publishService.stepOpenIndex$.subscribe((index)=>{
       this.isOpen=index===this.step
       this.isDisable=index<this.step
-      console.log(index)
     })
   } 
   nextStep(){
@@ -32,12 +31,10 @@ export class WrapperPublishApartmentFormComponent implements OnInit,OnDestroy{
       this.publishService.navigateToSpecificStep(this.step-1)
   }
   openStep(){
-    console.log("RR2")
     if (!this.isDisable&&!this.isOpen)
       this.publishService.navigateToSpecificStep(this.step)
   }
   stopPropagation(event:Event){
-    console.log("SSS")
     event.stopPropagation()
   }
   ngOnDestroy(): void {

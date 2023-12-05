@@ -12,6 +12,8 @@ import { PublishPageComponent } from './components/pages/publish-page/publish-pa
 import { PublishApartmentPageComponent } from './components/pages/publish-apartment-page/publish-apartment-page.component';
 import { getApartmentTypesResolver } from './resolvers/get-apartment-types.resolver';
 import { getApartmentFeaturesResolver } from './resolvers/get-apartment-features.resolver';
+import { SearchApartmentPageComponent } from './components/pages/search-apartment-page/search-apartment-page.component';
+import { searchApartmentsResolver } from './resolvers/search-apartments.resolver';
 
 const routes: Routes = [
   {path:'',component:HomePageComponent,pathMatch:'full'},
@@ -28,6 +30,13 @@ const routes: Routes = [
     resolve:{
       types:getApartmentTypesResolver,
       features:getApartmentFeaturesResolver
+    }
+  },
+  {path:'search-apartment',component:SearchApartmentPageComponent,
+    resolve:{
+      types:getApartmentTypesResolver,
+      features:getApartmentFeaturesResolver,
+      searchApartments:searchApartmentsResolver
     }
   },
   {path:"**",redirectTo:"sign-in"}

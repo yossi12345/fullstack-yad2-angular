@@ -9,8 +9,7 @@ import { PublishApartmentService } from 'src/app/services/publish-apartment.serv
 export class PublishApartmentStep5Component{
   summary:string=""
   video?:{src:string,file:File}
-  images:{src:string,file:any}[]=[]
-  files:File[]=[]
+  images:{src:string,file:File}[]=[]
   constructor(private publishService:PublishApartmentService){}
   onChange(event:Event){
     const filesArray=(event.target as HTMLInputElement).files
@@ -24,7 +23,6 @@ export class PublishApartmentStep5Component{
           src:URL.createObjectURL(file),
           file
         }
-        this.files.push(file)
         break
       case "jpeg":
       case "jpg":
@@ -34,20 +32,24 @@ export class PublishApartmentStep5Component{
           src:URL.createObjectURL(file),
           file
         })
-        this.files.push(file)
         break
       default:
         (event.target as HTMLInputElement).value=""
     }
   }
-  eraseFile(file:File,index?:number){
-    this.files.splice(this.files.indexOf(file),1)
+  eraseFile(index?:number){
     if (index===undefined)
       this.video=undefined
     else
       this.images.splice(index,1)
   }
   onSubmit(){
-    this.publishService.onSubmitStep(5,{files:this.files})
+    const data:any={}
+    data.mainFile=this.images[0]?.file
+    data.video=this.video?.file
+    data.files=[]
+    for (let i=1;i<this.images.length;i++)
+      data.files.push(this.images[i].file)
+    this.publishService.onSubmitStep(5,data)
   }
 }

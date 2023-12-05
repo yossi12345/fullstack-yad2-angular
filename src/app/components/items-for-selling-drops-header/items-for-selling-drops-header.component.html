@@ -1,10 +1,10 @@
 <ul class="items-for-selling-container">
     <li *ngFor="let item of itemsForSelling" class="item">
-        <a class="item-name">{{item.itemName}}</a>
+        <a class="item-name" [routerLink]="item.url" >{{item.itemName}}</a>
         <div class="links-container" *ngIf="item.groupLinks1.length>0||item.groupLinks2.length>0">
             <ul>
                 <li *ngFor="let link of item.groupLinks1">
-                    <a>
+                    <a [routerLink]="link.url">
                         <app-icon *ngIf="link.icon" [name]="link.icon" height="24" width="24"/>
                         {{link.name}}
                     </a>

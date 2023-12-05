@@ -1,0 +1,35 @@
+<label>
+    סוג נכס
+</label>
+<button type="button" class="apartment-type-drop-container" (focus)="openDrop()" (blur)="closeDrop()">
+    <div class="first-arrow-container" (click)="toggleDrop()">
+        <div></div>
+    </div>
+    <input placeholder="בחרו סוגי נכסים" readonly class="width4"  [value]="inputValue" (focus)="openDrop()" (blur)="closeDrop()"/>
+    <ul [class]="'drop'+(shouldDropOpen?' open-drop':'')">
+        <h5 (click)="updateChosenApartmentTypes('everything')" class="everything">
+            <div class="checkbox"></div>
+            <label>
+                כל סוגי הנכסים
+            </label>
+        </h5>
+        <div *ngFor="let category let i=index of apartmentTypeCategories" class="category">
+            <h5 (click)="updateChosenApartmentTypes(category)" >
+                <div class="checkbox"></div>
+                <label>{{category}}</label>
+                <div (click)="toggleApartmentType(category,$event)" class="arrow-container">
+                    <div [class]="'arrow '+(openApartmentTypeCategory===category?'up':'down')"></div>
+                </div>
+            </h5>
+            <ul [class]="(openApartmentTypeCategory===category?'':'close')">
+                <li *ngFor="let name of apartmentTypesDividedToCategories[category]" (click)="updateChosenApartmentTypes(category,name)" >
+                    <div [class]="'checkbox'+(isApartmentTypeChosen(category,name)?' checked':'')"></div>
+                    <label>
+                        {{name}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="choosing">בחירה</div>
+    </ul>
+</button>

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ApartmentType } from 'src/app/models/ApartmentType';
 
 @Component({
   selector: 'app-publish-apartment-page',
@@ -14,7 +15,7 @@ export class PublishApartmentPageComponent implements OnInit,OnDestroy{
   constructor(private route:ActivatedRoute){}
   ngOnInit(): void {
     this.subscriber=this.route.data.subscribe((res)=>{
-      this.types=res['types']
+      this.types=res['types'].map((type:ApartmentType)=>type.name)
       this.features=res['features']
     })  
   }

@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class PublishApartmentService {
 
   private amountOfSteps=7
   private apartmentData:object[]
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,private authService:AuthService) {
     const apartmentData=sessionStorage.getItem("apartmentData")
     this.apartmentData=apartmentData?JSON.parse(apartmentData):[]
     if (this.apartmentData.length>0)
@@ -36,10 +37,52 @@ export class PublishApartmentService {
       this.createApartment()
   }
   createApartment(){
-
+    const form =new FormData()
+    this.apartmentData.forEach((step:any)=>{
+        for (const field in step){
+          switch(field){
+            case 'files':
+              console.log("HG")
+              step[field].forEach((file:File)=>{
+                form.append(field,file,file.name)
+              })
+              console.log("HGr")
+            break
+            case 'video':
+            case 'mainFile':
+              if (step[field])
+                form.append(field,step[field],step[field].name)
+              break
+            case "phones":
+              form.append(field,JSON.stringify(step[field]))
+              break
+            default:
+              if (Array.isArray(step[field])){
+                step[field].forEach((el:any)=>{
+                  form.append(field,el)
+                })
+              }
+              else
+                form.append(field,step[field])
+              console.log(field,step[field])
+              break
+          }
+        } 
+    })
+    const headers=new HttpHeaders({
+      'Authorization':'Bearer '+this.authService.getToken()
+    })
+    this.http.post(environment.SERVER_URL+"apartment",form,{headers}).pipe(
+      catchError((err:any)=>{
+        console.log({err})
+        return of(false)
+      })
+    ).subscribe(res=>{
+      console.log({res})
+    })
   }
   getTypes(){
-    return this.http.get(environment.SERVER_URL+"PublishApartment/types").
+    return this.http.get(environment.SERVER_URL+"apartment/types").
       pipe(
         catchError((err)=>{
           console.log(err)
@@ -48,26 +91,12 @@ export class PublishApartmentService {
       )
   }
   getFeatures(){
-    return this.http.get(environment.SERVER_URL + 'PublishApartment/features').
+    return this.http.get(environment.SERVER_URL + 'apartment/features').
       pipe(
         catchError(err=>{
           console.log(err)
           return of(null)
         })
       )
-  }
-  getCities(search:string){
-    const q=JSON.stringify({['שם_ישוב']:search+":*"})
-    return this.http.get('https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&distinct=true&fields=שם_ישוב&sort=שם_ישוב&q='+q).
-      pipe(map((res:any)=>
-        (res.result.records as Array<any>).map(obj=>obj['שם_ישוב'])
-      ))
-  }
-  getStreets(search:string){
-    const q=JSON.stringify({['שם_רחוב']:search+":*"})
-    return this.http.get('https://data.gov.il/api/3/action/datastore_search?resource_id=9ad3862c-8391-4b2f-84a4-2d4c68625f4b&distinct=true&fields=שם_רחוב&sort=שם_רחוב&q='+q).
-      pipe(map((res:any)=>
-        (res.result.records as Array<any>).map(obj=>obj['שם_רחוב'])
-      ))
   }
 }

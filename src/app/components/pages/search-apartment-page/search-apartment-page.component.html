@@ -1,0 +1,65 @@
+<header>
+    <div class="flex margin-left-auto">
+        <a class="logo-container">
+            <img src="/assets/logo.svg">
+        </a>
+        <app-items-for-selling-drops-header/>
+    </div>
+    <a class="header-icon">
+        <app-icon name="bell" width="24" height="24"/>
+    </a>
+    <a class="header-icon">
+        <app-icon name="heart" width="21" height="21"/>
+    </a>
+    <app-user-drop-header/>
+    <a class="publish" routerLink="/publish">
+        <app-icon name="plus" color="white" width="25" height="25"/>
+        פרסום מודעה
+    </a>
+</header>
+<app-search-apartment-form [apartmentTypes]="apartmentTypes" [apartmentFeatures]="features" (onSearch)="onSearch($event)" [searchFirstTime]="searchFirstTime" />
+<div class="additional-options">
+    <div>
+        <div class="order-by-container">
+            <label>מיין לפי</label>
+            <input readonly [value]="orderBy"/>
+            <ul>
+                <div class="triangle"></div>
+                <li *ngFor="let orderByPossibility of orderByPossibilities">
+                    <input class="none" [id]="orderByPossibility" type="radio" name="orderBy" [checked]="orderBy===orderByPossibility"/>
+                    <label [for]="orderByPossibility" (mousedown)="onChangeOrderBy(orderByPossibility)" >
+                        {{orderByPossibility}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="filters-container">
+            <button>
+                <label>
+                    <app-icon name="filter" width="18" height="18"/>
+                    סנן תוצאות
+                </label>
+                <ul>
+                    <div class="triangle"></div>
+                    <li *ngFor="let filter of filterPossibilities" (mousedown)="onChangeFilter(filter)" >
+                        {{filter}}
+                      <input type="checkbox" class="none" [checked]="filters.includes(filter)"/>
+                    </li>
+                    <div class="buttons-container">
+                        <div (mousedown)="clearFilters()">
+                            ניקוי
+                        </div>
+                        <div>
+                            סינון
+                        </div>
+                    </div>
+                </ul>
+            </button>
+        </div>
+    </div>
+</div>
+<ul class="apartments-list">
+    <li *ngFor="let apartment of apartments" >
+        <app-apartment-for-search-page [apartment]="apartment" [features]="features" />
+    </li>
+</ul>

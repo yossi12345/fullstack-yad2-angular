@@ -85,8 +85,6 @@ export class SignUpPart1PageComponent implements OnInit{
       this.showMailError=true
       return 
     }
-    sessionStorage.setItem("mail",mailControl.value)
-    sessionStorage.setItem('password',passwordControl.value)
     this.showUniqueMailError=false
     this.isPending=true
     this.authService.isEmailAlreadyExist(mailControl.value).subscribe((isEmailExist)=>{
@@ -94,6 +92,8 @@ export class SignUpPart1PageComponent implements OnInit{
         this.showUniqueMailError=true
       else {
         //send validation mail code 
+        sessionStorage.setItem("mail",mailControl.value)
+        sessionStorage.setItem('password',passwordControl.value)
         this.router.navigate(['sign-up2'])
       }
       this.isPending=false

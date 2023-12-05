@@ -1,0 +1,273 @@
+:host{
+    min-height: 100svh;
+    height: fit-content;
+    background-color: #f9f9f9;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom:20px ;
+}
+.publish{
+    padding: 6px 22px;
+    background-color: #0aca80;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    border-radius: 24px;
+    height: fit-content;
+    margin-right: 10px;
+    text-decoration: none;
+    &:hover{
+        background-color: #0e9c64;
+    }
+}
+header{
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+    background-color: white;
+    box-shadow: 1px 1px 15px rgba(0,0,0,.2);
+    height: fit-content;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-bottom:20px ;
+    @media (min-width:880px) {
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+}
+.logo-container{
+    img{
+        width: 50px;
+        height: 24.7px;
+        @media (min-width:880px) {
+            width: 46px;
+            height: 28px;
+          
+        }
+    }
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.header-icon{
+    height: 64px;
+    padding:0 14px;
+    display: flex;
+    align-items: center;
+    &:hover{
+        background-color: #f9f9f9;
+    }
+}
+.margin-left-auto{
+    margin-left: auto;
+}
+.additional-options{
+    width: 960px;
+    height: 37px;
+    margin: 20px 0;
+    &>:first-child{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 695px;
+    }
+ 
+    label{
+        font-size:14px ;
+    }
+}
+.order-by-container{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    input{
+        height: 100%;
+        border: 1px solid #dbdbdb;
+        padding: 10px;
+        width: 170px;
+        cursor: pointer;
+        &:focus{
+            outline: none;
+        }
+    }
+    &::after{
+        content: "";
+        border: 2px solid black;
+        border-top: none;
+        border-left: none;
+        width: 5px;
+        height: 5px;
+        position: relative;
+        left: 26px;
+        bottom: 1px;
+        transform: rotate(45deg);
+    }
+    input:focus+ul{
+        display: inline-block;
+    }
+    label{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    input+label::before{
+        content: "";
+        height: 15px;
+        width: 15px;
+        border-radius: 100%;
+        border:2px solid #757575;
+    }
+    input:checked+label::before{
+        background-color:#ff7100;
+        border: 4px solid white;
+        box-shadow: 0 0 0 2px #ff7100;
+        height: 9px;
+        width: 9px;
+        margin-right: 1px;
+    }
+    ul{
+        box-shadow:  0 3px 5px 0 rgba(0,0,0,.2), 0 1px 18px 0 rgba(0,0,0,.12), 0 6px 10px 0 rgba(0,0,0,.14);
+        background-color: white;
+        position: absolute;
+        top: calc(100% + 10px);
+        padding:0px 17px 10px;
+        margin: 0;
+        list-style: none;
+        right: 37px;
+        display: none;
+        z-index: 1;
+        label{
+            width: 150px;
+        }
+    }
+    .triangle{
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        margin: auto;
+        border-bottom: 10px solid white;
+        position: relative;
+        bottom: 10px;
+    }
+}
+.filters-container{
+    position: relative;
+    height: 37px;
+    &:has(.checked){
+        label{
+            border-color:#ff7100;
+            color: #ff7100;
+        }
+        app-icon{
+            fill:#ff7100
+        }
+    }
+    button{
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        height: 100%;
+    }
+    label{
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 5px;
+        font-size: 14px;
+        padding: 12px;
+        border:1px solid #bdbdbd;
+        &:hover{
+            background-color: #dbdbdb;
+        }
+    }
+    button:focus ul{
+        display: inline-block;
+    }
+    ul{
+        border:1px solid #bdbdbd;
+        position: absolute;
+        background-color: white;
+        box-shadow:  0 3px 5px 0 rgba(0,0,0,.2), 0 1px 18px 0 rgba(0,0,0,.12), 0 6px 10px 0 rgba(0,0,0,.14);
+        list-style: none;
+        margin-top: 17px;
+        left: 2px;
+        padding: 0;
+        top: 100%;
+        padding-top: 10px;
+        display: none;
+        z-index: 1;
+    }
+    li{
+        padding-right: 12px;
+        margin-bottom: 15px;
+        width: 183px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        &::before{
+            content: "";
+            height: 15px;
+            width: 15px;
+            outline: 1px solid black;
+        }
+        &:has(input:checked)::before{
+            content: "\2714";
+            outline: none;
+            background-color: #ff7100;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }
+    }
+    .triangle{
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        right:130px ;
+        border-bottom: 10px solid white;
+        position: relative;
+        bottom: 18px;
+    }
+    .buttons-container{
+        border-top: 1px solid #bdbdbd;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        &>:last-child{
+            color:#ff7100
+        
+        }
+        &>:first-child{
+            color:#dbdbdb;
+        }
+        button{
+            border: none;
+            text-align: start;
+            padding: 0;
+            width: fit-content;
+            font-weight: 500;
+        }
+    }
+}
+.triangle{
+    width: 0;
+    height: 0;
+}
+.apartments-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 960px;
+}

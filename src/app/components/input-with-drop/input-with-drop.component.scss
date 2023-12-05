@@ -1,0 +1,20 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.drop{
+    overflow: auto;
+    border: 1px solid #ccc;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    height: fit-content;
+    li{
+        padding:11px 10px;
+        &:hover{
+            background-color: #eeeeee;
+        }
+    }
+    
+}

@@ -12,7 +12,7 @@ export class PublishApartmentStep3Component implements OnInit{
   summary:string=""
   step3Form!:FormGroup
   arrForAmountOfRooms:number[]=[0]
-  @Input() features?:string[]
+  @Input() features:string[]=[]
   isSubmitted:boolean=false
   textareaDetails!:{barColor?:string,description:string,descriptionColor:string,barWidth:string}
   arrForAmountOfShowerRooms=Object.keys(APARTMENT_AMOUNT_OF_SHOWER_ROOMS)
@@ -120,6 +120,7 @@ export class PublishApartmentStep3Component implements OnInit{
     data.amountOfParkingPlaces=APARTMENT_AMOUNT_OF_PARKING_PLACES[data.amountOfParkingPlaces]
     data.amountOfBalcony=APARTMENT_AMOUNT_OF_BALCONY[data.amountOfBalcony]
     data.amountOfShowerRooms=APARTMENT_AMOUNT_OF_SHOWER_ROOMS[data.amountOfShowerRooms]
+    data.amountOfRooms*=1
     this.publishService.onSubmitStep(3,data)
   }
   

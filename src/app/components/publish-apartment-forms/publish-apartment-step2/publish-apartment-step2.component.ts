@@ -3,14 +3,16 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { forkJoin } from 'rxjs';
 import { APARTMENT_CONDITIONS, APARTMENT_VIEWS, getKeyByValue } from 'src/app/Dictionaries';
 import { PublishApartmentService } from 'src/app/services/publish-apartment.service';
+import { SearchPlacesService } from 'src/app/services/search-places.service';
 
 @Component({
   selector: 'app-publish-apartment-step2',
   templateUrl: './publish-apartment-step2.component.html',
-  styleUrls: ['./publish-apartment-step2.component.scss']
+  styleUrls: ['./publish-apartment-step2.component.scss'],
+  providers:[SearchPlacesService]
 })
 export class PublishApartmentStep2Component implements OnInit{
-  @Input() apartmentTypes!:string[]
+  @Input() apartmentTypes:string[]=[]
   apartmentConditions:string[]=Object.keys(APARTMENT_CONDITIONS)
   step2Form!:FormGroup
   summary:string=""
@@ -21,7 +23,7 @@ export class PublishApartmentStep2Component implements OnInit{
   isSubmitted:boolean=false
   showStreetError:boolean=false
   showCityError:boolean=false
-  constructor(private fb:FormBuilder,private publishService:PublishApartmentService){}
+  constructor(private fb:FormBuilder,private publishService:PublishApartmentService,private searchPlaces:SearchPlacesService){}
   ngOnInit(): void {
     const data:any=this.publishService.getStepData(2)
     this.step2Form=this.fb.group({
@@ -81,14 +83,19 @@ export class PublishApartmentStep2Component implements OnInit{
       this.isSubmitted=true
       return 
     }
+    
     const formData=this.step2Form.getRawValue()
-    forkJoin({cities:this.publishService.getCities(formData.city),streets:this.publishService.getStreets(formData.street)})
+    forkJoin({cities:this.searchPlaces.getCities(formData.city),streets:this.searchPlaces.getStreets(formData.street)})
       .subscribe((res:any)=>{
         console.log(res)
         if (res.streets[0]===formData.street&&res.cities[0]===formData.city){
           this.updateSummary(formData)
           formData.view=APARTMENT_VIEWS[formData.view]
           formData.condition=APARTMENT_CONDITIONS[formData.condition]
+          formData.amountOfFloorsInBuilding*=1
+          formData.streetNumber*=1
+          formData.apartmentNumber*=1
+          formData.floor*=1
           this.publishService.onSubmitStep(2,formData)
         }
         else{
@@ -105,13 +112,13 @@ export class PublishApartmentStep2Component implements OnInit{
   }
   getCities(){
     const search=this.getControl("city").value
-    this.publishService.getCities(search).subscribe((cities)=>{
+    this.searchPlaces.getCities(search).subscribe((cities)=>{
       this.cities=cities
     })
   }
   getStreets(){
     const search=this.getControl("street").value
-    this.publishService.getStreets(search).subscribe((streets)=>{
+    this.searchPlaces.getStreets(search).subscribe((streets)=>{
       this.streets=streets
     })
   }

@@ -1,0 +1,105 @@
+<form #searchForm="ngForm" (ngSubmit)="onSubmit()" >
+    <h4 class="title">
+        איזה נכס ל<span>מכירה</span>
+        תרצו לחפש?
+    </h4>
+    <div class="regular-search-container">
+        <div class="input-container">
+            <label>
+                חפשו אזור, עיר, שכונה או רחוב
+            </label>
+            <div class="input-places">
+                <input class="width2" (input)="findPlaces()" [(ngModel)]="inputs.place" name="place" placeholder="" />
+                <ul class="drop" [ngSwitch]="inputs.place?.includes(', ')">
+                    <ul *ngSwitchCase="false">
+                        <h6>ערים</h6>
+                        <li *ngFor="let city of cities" (mousedown)="handleChangePlace(city,'city',$event)" >
+                            {{city}}
+                        </li>
+                    </ul>
+                    <ul *ngSwitchCase="true">
+                        <h6>רחובות</h6>
+                        <li *ngFor="let street of streets" (mousedown)="handleChangePlace(street,'street',$event)" >
+                            {{street}}
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <app-apartment-types-input-for-search-form [chosenApartmentTypesFirstTime]="chosenApartmentTypesFirstTime" [apartmentTypes]="apartmentTypes" (changeChosenApartmentTypes)="updateChosenApartmentType($event)" />
+        <div class="input-container">
+            <label>חדרים</label>
+            <button type="button" class="input-with-drop-container2 rooms-drop">
+                <input readonly placeholder="חדרים" class="width6" [value]="amountOfRoomsInput" />
+                <div class="drop">
+                    <app-input-with-drop placeholder="מ-" [dropContent]="minAmountOfRoomsPossibilities.available" inputWidth="75px" dropMaxHeight="242px" [inputValue]="minAmoutOfRooms" (choose)="handleRoomsInputChange('min',$event)" />
+                    <app-input-with-drop placeholder="עד-" [dropContent]="maxAmountOfRoomsPossibilities.available" inputWidth="75px" dropMaxHeight="242px" [inputValue]="maxAmoutOfRooms" (choose)="handleRoomsInputChange('max',$event)" />
+                </div>
+            </button>
+        </div>
+        <div>
+            <label>
+                מחיר
+            </label>
+            <br/>
+            <div class="couple-input-container">
+                <input placeholder="מ-" class="width6" [(ngModel)]="inputs.minPrice" name="minPrice" (input)="onChangeInputNumber($event,'minPrice')"/>
+                <input placeholder="עד-" class="width6" [(ngModel)]="inputs.maxPrice" name="maxPrice" (input)="onChangeInputNumber($event,'maxPrice')"/>
+            </div>
+        </div>
+        <button type="button" class="advanced-search-btn" (click)="toggleAdvancedSearch()" >
+            <span>+</span>
+            חיפוש מתקדם
+            <ng-container *ngIf="amountOfValuesInAdvancedSearch>0">
+                <div></div>
+                ({{amountOfValuesInAdvancedSearch}})
+            </ng-container>
+        </button>
+        <button type="submit" class="submit-btn">
+           <app-icon name="search" width="22" height="22" color="white"/>
+            חיפוש
+        </button>
+    </div>
+    <div [class]="'advanced-search-container'+(showAdvancedSearch?'':' advanced-close')">
+        <div>
+            <div class="features">
+                <h4>מאפייני דירה</h4>
+                <ul>
+                    <li *ngFor="let feature of apartmentFeatures">
+                        <app-checkbox [label]="feature" [isChecked]="chosenFeatures.includes(feature)" (onChange)="updateFeatures($event,feature)" />
+                    </li>
+                </ul>
+            </div>
+            <div class="advanced-search-row">
+                <div>
+                    <label>קומה</label>
+                    <br/>
+                    <div class="couple-input-container">
+                        <app-input-with-drop placeholder="מ-" [dropContent]="minFloorsPossibilities.available" inputWidth="123px" [inputValue]="minFloor" (choose)="handleFloorInputChange('min',$event)" />
+                        <app-input-with-drop placeholder="עד-" [dropContent]="maxFloorsPossibilities.available" inputWidth="123px" [inputValue]="maxFloor" (choose)="handleFloorInputChange('max',$event)" />
+                    </div>
+                </div>
+                <div>
+                    <label>גודל דירה (במ"ר)</label>
+                    <div class="couple-input-container">
+                        <input class="width5" placeholder="מ-" [(ngModel)]="inputs.minArea" name="minArea" (input)="onChangeInputNumber($event,'minArea')" />
+                        <input  class="width5" placeholder="עד-" [(ngModel)]="inputs.maxArea" name="maxArea" (input)="onChangeInputNumber($event,'maxArea')" />
+                    </div>
+                </div>
+                <div>
+                    <label>תאריך כניסה</label>
+                    <input type="date" placeholder="החל מ- הזינו תאריך" [min]="today" [(ngModel)]="inputs.entryDate" name="entryDate"/>
+                </div>
+                <app-checkbox label="כניסה מיידית" [isChecked]="isImmidiateEntryDate" (onChange)="toggleIsImmidiateEntryDate()" />
+            </div>
+            <div class="free-search">
+                <label>חיפוש חופשי</label>
+                <br/>
+                <input class="width1" [(ngModel)]="inputs.freeSearch" name="freeSearch" placeholder=""/>
+            </div>
+            <button type="submit" class="submit-btn">חיפוש</button>
+            <div class="clear" (click)="clearForm(searchForm)">נקה</div>
+        </div>
+    </div>
+</form>
+<!-- entryDate,freeSearch,minArea,maxArea,minPrice,maxPrice -->

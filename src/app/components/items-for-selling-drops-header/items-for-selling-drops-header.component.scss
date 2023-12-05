@@ -10,9 +10,13 @@ ul{
         display: flex;
     }
 }
+a{
+    text-decoration: none;
+}
 .links-container{
     padding: 5px 25px;
     position: absolute;
+    z-index: 1;
     top: 100%;
     display: none;
     width: fit-content;

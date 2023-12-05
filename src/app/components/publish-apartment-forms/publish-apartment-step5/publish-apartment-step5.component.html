@@ -14,7 +14,7 @@
                         גרור ושחרר או העלה את הקובץ שלך 
                     </div>
                     <input type="file" (input)="onChange($event)" accept=".avi,.mp4" *ngIf="!video"/>
-                    <button *ngIf="video" type="button" class="video-trash-can" (click)="eraseFile(video.file)">
+                    <button *ngIf="video" type="button" class="video-trash-can" (click)="eraseFile()">
                         <app-icon name="trash-can" width="24" height="24" color="white"/>
                     </button>
                     <video *ngIf="video" [src]="video.src" class="video"></video>
@@ -34,7 +34,7 @@
         <div class="uploaded-images-container">
             <div *ngFor="let image of images let i=index" class="image-container">
                 <div class="buttons-container">
-                    <button (click)="eraseFile(image.file,i)" >
+                    <button (click)="eraseFile(i)" >
                         <app-icon name="trash-can" width="24" height="24" color="white"/>
                     </button>
                     <button>

@@ -39,6 +39,11 @@ import { PublishApartmentStep7Component } from './components/publish-apartment-f
 import { PublishApartmentPageComponent } from './components/pages/publish-apartment-page/publish-apartment-page.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { PackageForPublishApartmentComponent } from './components/publish-apartment-forms/package-for-publish-apartment/package-for-publish-apartment.component';
+import { SearchApartmentPageComponent } from './components/pages/search-apartment-page/search-apartment-page.component';
+import { SearchApartmentFormComponent } from './components/search-apartment-form/search-apartment-form.component';
+import { InputWithDropComponent } from './components/input-with-drop/input-with-drop.component';
+import { ApartmentTypesInputForSearchFormComponent } from './components/apartment-types-input-for-search-form/apartment-types-input-for-search-form.component';
+import { ApartmentForSearchPageComponent } from './components/apartment-for-search-page/apartment-for-search-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +80,11 @@ import { PackageForPublishApartmentComponent } from './components/publish-apartm
     PublishApartmentPageComponent,
     CheckboxComponent,
     PackageForPublishApartmentComponent,
+    SearchApartmentPageComponent,
+    SearchApartmentFormComponent,
+    InputWithDropComponent,
+    ApartmentTypesInputForSearchFormComponent,
+    ApartmentForSearchPageComponent,
   ],
   imports: [
     BrowserModule,

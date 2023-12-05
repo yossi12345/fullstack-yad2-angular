@@ -1,0 +1,8 @@
+<div class="input-with-drop-container2">
+    <input readonly [placeholder]="placeholder" [ngStyle]="{width:inputWidth}" [value]="inputValue"/>
+    <ul [ngStyle]="{width:inputWidth,maxHeight:dropMaxHeight}"  class="drop">
+        <li *ngFor="let li of dropContent" (mousedown)="onClick(li)" >
+            {{li}}
+        </li>
+    </ul>
+</div>

@@ -36,7 +36,6 @@ export class PublishApartmentStep4Component implements OnInit{
       isEntryDateImmidiate:[false],
       pricePerMeter:[{value:'',disabled:true}]
     })
-    console.log(data)
     if (data&&data.isEntryDateFlexible!==null){
       this.getControl('isEntryDateFlexible').setValue(data.isEntryDateFlexible)
       this.getControl('isEntryDateImmidiate').setValue(!data.isEntryDateFlexible)
@@ -77,7 +76,7 @@ export class PublishApartmentStep4Component implements OnInit{
   updatePricePerMeter(){
     const controlPrice=this.getControl('price')
     const controlArea=this.getControl("area")
-    const newValue=(controlArea.valid&&controlPrice.valid)?(controlPrice.value/controlArea.value):''
+    const newValue=(controlArea.valid&&controlPrice.valid)?((controlPrice.value/controlArea.value).toLocaleString()):''
     this.getControl('pricePerMeter').setValue(newValue)
   }
   getControl(controlName:string){
@@ -90,17 +89,18 @@ export class PublishApartmentStep4Component implements OnInit{
     }
     const data:any={}
     this.showEntryDateError=false
-    data.entryDate=new Date(this.getControl('entryDate').value)
+    data.entryDate=this.getControl('entryDate').value
     if (data.entryDate<new Date(this.today)){
       this.showEntryDateError=true
       return 
     }
-    data.area=this.getControl('area').value
-    data.builtArea=this.getControl('builtArea').value
-    data.price=this.getControl('price').value
+    data.area=this.getControl('area').value*1
+    data.builtArea=this.getControl('builtArea').value*1
+    data.price=this.getControl('price').value*1
     const isEntryDateFlexible=this.getControl('isEntryDateFlexible').value
     const isEntryDateImmidiate=this.getControl('isEntryDateImmidiate').value
-    data.isEntryDateFlexible=isEntryDateFlexible||isEntryDateImmidiate?isEntryDateFlexible:null
+    if (isEntryDateFlexible||isEntryDateImmidiate)
+      data.isEntryDateFlexible=isEntryDateFlexible?isEntryDateFlexible:isEntryDateImmidiate
     this.summary="מחיר: "+data.price+'₪'
     this.publishService.onSubmitStep(4,data)
   }
